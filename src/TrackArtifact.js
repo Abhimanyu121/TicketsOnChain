@@ -63,9 +63,6 @@ export default class TrackArtifact extends React.Component {
 
   render(){
     const listItems = this.state.posts.map((item, index) =>
-
-
-        <li key={Math.random()}>
           <Col sm="12" md="4">
             <Card>
             <CardHeader>{JSON.parse(item.content).subject}</CardHeader>
@@ -82,10 +79,7 @@ export default class TrackArtifact extends React.Component {
               <Button id={index} theme="danger" value="no" onClick={this.handleVote}>Not that Good</Button>
             </CardBody>
           </Card>
-          </Col>
-        </li>
-
-
+          </Col>  
   )
     return(
       <div>

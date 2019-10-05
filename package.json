@@ -1,0 +1,44 @@
+{
+  "name": "ethnia",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "algosdk": "^1.3.1",
+    "axios": "^0.19.0",
+    "ipfs-http-client": "^38.0.0",
+    "jquery": "^3.4.1",
+    "leaflet": "^1.5.1",
+    "node-cache": "^4.2.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-leaflet": "^2.4.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.2",
+    "shards-react": "^1.0.3",
+    "truffle-hdwallet-provider": "^1.0.17",
+    "typescript": "^3.6.3",
+    "web3": "^1.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "homepage": "./",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

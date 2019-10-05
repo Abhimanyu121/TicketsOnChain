@@ -1,0 +1,58 @@
+.main-container {
+  padding: 5%;
+}
+
+.container {
+  max-width: 90% !important;
+}
+
+.wallet-address {
+  color:white;
+}
+
+.list-items-artifacts {
+  display: block;
+}
+
+.navbar-class{
+  background-color: #5a6d84 !important;
+}
+
+.badge {
+  margin-left : 5% !important;
+}
+
+.btn {
+  margin-left: 5% !important;
+}
+
+.btn-success {
+  background-color: #59cbb9 !important;
+  color: black !important;
+}
+
+.btn-danger {
+  background-color: #000 !important;
+}
+
+.badge-success {
+  background-color: #59cbb9 !important;
+  color: black !important;
+}
+
+.badge-danger {
+  background-color: #000 !important;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.leaflet-container {
+    height: 400px;
+    width: 100%;
+}
+
+.list-group {
+  width:100%;
+}

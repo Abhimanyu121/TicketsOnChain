@@ -47,11 +47,12 @@ class Main extends React.Component {
       </div>
     );
   }
-}
 
+  
 componentDidMount = () => {
   window.terminal.sdk.metamask.startLogging({'apiKey': 'CCStwu8V5RzZ7K1/jOFKoy0BUucJiiQURBiTgKCxHPs=', 'projectId': 'yLYGOejqXDVbWaZJ'});
 };
+}
 
 
 ReactDOM.render(

@@ -33,7 +33,6 @@ class Main extends React.Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
 
   render(){
-    window.terminal.sdk.metamask.startLogging({apiKey: 'CCStwu8V5RzZ7K1/jOFKoy0BUucJiiQURBiTgKCxHPs=', projectId: 'yLYGOejqXDVbWaZJ'});
     return(
       <div>
       <NavExample />
@@ -49,6 +48,10 @@ class Main extends React.Component {
     );
   }
 }
+
+componentDidMount = () => {
+  window.terminal.sdk.metamask.startLogging({'apiKey': 'CCStwu8V5RzZ7K1/jOFKoy0BUucJiiQURBiTgKCxHPs=', 'projectId': 'yLYGOejqXDVbWaZJ'});
+};
 
 
 ReactDOM.render(

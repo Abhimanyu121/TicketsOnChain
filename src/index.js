@@ -33,6 +33,7 @@ class Main extends React.Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
 
   render(){
+    window.terminal.sdk.metamask.startLogging({apiKey: 'CCStwu8V5RzZ7K1/jOFKoy0BUucJiiQURBiTgKCxHPs=', projectId: 'yLYGOejqXDVbWaZJ'});
     return(
       <div>
       <NavExample />
@@ -44,7 +45,6 @@ class Main extends React.Component {
       </HashRouter>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
       <script src="https://storage.googleapis.com/terminal-sdk/metamask/latest/metamask-latest.min.js"></script>
-      <script type="text/JavaScript">window.terminal.sdk.metamask.startLogging({apiKey: 'CCStwu8V5RzZ7K1/jOFKoy0BUucJiiQURBiTgKCxHPs=', projectId: 'yLYGOejqXDVbWaZJ'});</script>
       </div>
     );
   }

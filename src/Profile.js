@@ -1,14 +1,11 @@
 import React from "react";
 import getContractInstance from './utils.js';
-import Travel from "./contracts/Travel.json";
 
 import {
   Row,
   Col,
   Container,
   Button,
-  FormInput,
-  Collapse,
   Card,
   CardFooter,
   CardBody,
@@ -18,6 +15,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'shards-react';
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default class Profile extends React.Component {
   render() {
@@ -136,16 +134,16 @@ class TrackHistory extends React.Component {
           <Col sm="12" md="3">
               <CardImg width="200" src="https://c.gitcoin.co/avatars/0357f94b529985a8a898ab338add0edf/djrosenbaum.png" /> <br /> <br/>
               <h3><b>Daniel</b></h3>
+              <h5><b><a href="/#/edit-profile">Edit Profile</a></b></h5>
           </Col>
           <Col sm="12" md="9">
             <div>
               <Card>
-                <CardHeader>  Your XP :- 3</CardHeader>
+                <CardHeader>Details</CardHeader>
                 <CardBody>
-                  <p>Total Posts :- {this.state.profile.posts}</p>
-                  <p>Total Kudos :- {this.state.profile.tokens}</p>
-                  <p>Total Upvotes :- {this.state.profile.upvotes}</p>
-                  <p>Total Downvotes :- {this.state.profile.downvotes}</p>
+                  <p>Total Tickets :- {this.state.profile.tickets}</p>
+                  <p>Total Events Attended/Attending :- {this.state.profile.events}</p>
+        
                   </CardBody>
                 </Card>
             </div>
@@ -154,7 +152,7 @@ class TrackHistory extends React.Component {
         <br />
         <br />
       <hr />
-        <h5>Places You have Added</h5>
+        <h5>Events You have Added</h5>
         <Row>
           <ListGroup>
         {listItems}
@@ -163,7 +161,7 @@ class TrackHistory extends React.Component {
 
         <br/ >
           <hr />
-            <h5>Your Kudos</h5>
+            <h5>Your Tickets</h5>
             <Row>
 
             {kudosList}

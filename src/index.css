@@ -56,3 +56,6 @@
 .list-group {
   width:100%;
 }
+.Ticket {
+  background-image: image("ticket.jpg");
+}

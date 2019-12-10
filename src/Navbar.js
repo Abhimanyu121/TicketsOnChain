@@ -2,17 +2,9 @@ import React from "react";
 import {
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  FormInput,
+  
   Collapse
 } from "shards-react";
 import {
@@ -59,23 +51,22 @@ export default class NavExample extends React.Component {
           <Nav navbar>
             <NavItem>
               <NavLink onClick={this.navlink} active to="/" className="nav-link">
-                Home
+                
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={this.navlink} to="/new-review" className="nav-link">
-              Add Place
+              <NavLink onClick={this.navlink} to="/event-list" className="nav-link">
+              Events
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={this.navlink} to="/places-near" className="nav-link">
-              Places Near Me
+              <NavLink onClick={this.navlink} to="/new-event" className="nav-link">
+              Add Events
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={this.navlink} to="/new-token" className="nav-link">
-              Get New Token
-              </NavLink>
+              <NavLink onClick={this.navlink} to="/ticket-list" className="nav-link">
+              Tickets               </NavLink>
             </NavItem>
           </Nav>
 

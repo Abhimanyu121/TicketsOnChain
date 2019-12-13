@@ -138,7 +138,7 @@ export default class NavExample extends React.Component {
             </NavItem>
             <NavItem>
               <NavLink onClick={this.navlink} to="/ticket-list" className="nav-link">
-              Tickets               </NavLink>
+              Tickets/Hosted Events            </NavLink>
             </NavItem>
           </Nav>
 

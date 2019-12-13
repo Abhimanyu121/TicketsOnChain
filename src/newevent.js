@@ -176,14 +176,7 @@ export default class CreateReview extends React.Component{
                 
                 <CardBody className="WEB3">
                <center>   <CardTitle>Please Connect to Web3</CardTitle>
-               <Loader
-        type="Puff"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        timeout={5000} //5 secs
-
-     />
+               
                   </center>
                 </CardBody>
               </Card>

@@ -28,6 +28,7 @@ contract TicketsOnChain is ERC721MetadataMintable {
     address owner;
   }
   struct User{
+      uint[] hosting;
       uint[] owned;
       uint[] events;
       mapping(uint=>bool) checkedIn;
@@ -58,6 +59,7 @@ contract TicketsOnChain is ERC721MetadataMintable {
         eventId:eventCount
     });
     ownerToEvent[msg.sender]=eventCount;
+    userMapping[msg.sender].hosting.push(eventCount);
     eventMapping[eventCount]=obj;
     eventCount++;
     
@@ -85,6 +87,7 @@ contract TicketsOnChain is ERC721MetadataMintable {
     userMapping[msg.sender].owned.push(nftId);
     userMapping[msg.sender].events.push(eventId);
     userMapping[msg.sender].notCheckedIn[eventId]= true;
+    
     nftId++;
     tokenId = nftId;
   }
@@ -123,7 +126,8 @@ contract TicketsOnChain is ERC721MetadataMintable {
      userMapping[msg.sender].notCheckedIn[eventId]= false;
      status = true;
  }
- function UserProfile() public view returns (uint[] memory eventList, bool[] memory statusList, uint[] memory tokenList){
+ function UserProfile() public view returns (uint[] memory eventHost,uint[] memory eventList, bool[] memory statusList, uint[] memory tokenList){
+     eventHost = userMapping[msg.sender].hosting;
      eventList = userMapping[msg.sender].events;
      tokenList = userMapping[msg.sender].owned;
      statusList= new bool[](userMapping[msg.sender].events.length);

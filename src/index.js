@@ -50,7 +50,7 @@ class Main extends React.Component {
       <NavExample web3 ={this.state.superWeb3} contract = {this.state.superContract} setSuperAccount = {this.setSuperAccount} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>
       <HashRouter>
         <Route path="/new-event" render = {()=><NewEvent web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
-        <Route path="/ticket-list" component={TicketList}/>
+        <Route path="/ticket-list" render = {()=><TicketList web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/event-list" render = {()=><EventList web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/profile" component={Profile}/>
         <Route path="/edit-profile" component={EditProfile}/>

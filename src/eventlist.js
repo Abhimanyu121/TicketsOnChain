@@ -110,7 +110,7 @@ export default class CreateToken extends React.Component{
     <div style={{paddingLeft: "10%",paddingTop: "30px"}}>
     <Card style={{ maxWidth: "400px"}}>
       <script>console.log(item);</script>
-      <CardImg src="https://storage.googleapis.com/opensea-prod.appspot.com/creature/50.png" style = {{maxHeight:"300px"}}/>
+      <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"300px"}}/>
       <CardBody>
         <CardTitle>{item[4]}</CardTitle>
         <p>{item[9]}</p>

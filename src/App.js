@@ -1,31 +1,37 @@
 import React from "react";
-import ApplicationSign from "./contracts/ApplicationSign.json";
-import getWeb3 from "./utils/getWeb3";
+import TickesOnChain from "./contracts/TicketsOnChain.json";
+//import getWeb3 from "./utils/getWeb3";
+import Web3Connect from "web3connect";
+//import WalletConnectProvider from "@walletconnect/web3-provider";
+import Torus from "@toruslabs/torus-embed";
+import Web3 from "web3";
+
 
 import "./App.css";
 
 class App extends React.Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
-
+  
   componentDidMount = async () => {
     try {
+      const provider = await Web3Connect.ConnectToInjected();
       // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+      const web3 = await Web3(provider);
 
       // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
+      //const accounts = await web3.eth.getAccounts();
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = ApplicationSign.networks[networkId];
+      const deployedNetwork = TickesOnChain.networks[networkId];
       const instance = new web3.eth.Contract(
-        ApplicationSign.abi,
+        TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,
       );
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
+      this.setState({ web3, contract: instance }, this.runExample);
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(

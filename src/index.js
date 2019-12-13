@@ -1,7 +1,6 @@
 // Imports -----------------------------
 import React from 'react';
 import ReactDOM from 'react-dom';
-import getWeb3 from "./utils/getWeb3";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
@@ -19,23 +18,40 @@ import TicketList from './ticketlist';
 import Profile from './Profile';
 import EventList from './eventlist';
 import EditProfile from './editprofile';
-import {config} from './utils.js'
 
 const NodeCache = require( "node-cache" );
 const myCache = new NodeCache();
 // -------------------------------------
 
 class Main extends React.Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
-
+  state = { superWeb3: null, superAccount: null, superContract: null };
+  callbackFunction = (web3) => {
+    console.log("at CAllback");
+    this.setState({superWeb3: web3})
+  }
+  setSuperContract =(contract)=>{
+    this.setState({superContract: contract})
+  }
+  setSuperAccount = (acc)=>{
+    this.setState({superAccount: acc})
+  }
+  check =async()=>{
+    console.log("here");
+    if(this.state.web3!==undefined){
+      console.log("here");
+      let acc = await this.state.superWeb3.eth.getAccounts();
+      console.log(acc);
+    }
+  }
   render(){
-    return(
+    this.check();
+    return (
       <div>
-      <NavExample />
+      <NavExample web3 ={this.state.superWeb3} contract = {this.state.superContract} setSuperAccount = {this.setSuperAccount}setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>
       <HashRouter>
         <Route path="/new-event" component={NewEvent}/>
         <Route path="/ticket-list" component={TicketList}/>
-        <Route path="/event-list" component={EventList}/>
+        <Route path="/event-list" render = {()=><EventList web3 ={this.state.superWeb3} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/profile" component={Profile}/>
         <Route path="/edit-profile" component={EditProfile}/>
       </HashRouter>
@@ -47,7 +63,7 @@ class Main extends React.Component {
   
 }
 
-
+//<Route path="/event-list" component={EventList}/>
 ReactDOM.render(
   <Main />,
   document.getElementById('root')

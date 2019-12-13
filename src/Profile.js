@@ -1,5 +1,4 @@
 import React from "react";
-import getContractInstance from './utils.js';
 
 import {
   Row,
@@ -54,34 +53,34 @@ class TrackHistory extends React.Component {
 
   runExample = async () => {
 
-    const { accounts, contract } = this.state;
-    let count = await contract.methods.getPostCount().call({ from: accounts[0] });
-    let responses = [];
-    for(let i=0;i<count;i++){
-      let response = await contract.methods.getPosts(i).call({from: accounts[0]});
-      responses.push(response);
-    }
-    let profile = await contract.methods.myProfile().call({ from: accounts[0] });
-    console.log(responses);
-    console.log(profile);
-    let kudos = [];
-    let kcount = await contract.methods.tokenid().call({ from: accounts[0] });
-    for(let k=0; k<kcount; k++){
-      let owner = await contract.methods.ownerOf(k).call({ from: accounts[0] });
-      if(owner == accounts[0]){
-        let tokenurli = await contract.methods.tokenURI(k).call({from:accounts[0]});
-        kudos.push(tokenurli);
-      }
-    }
-    console.log('Kudos is ');
-    console.log(kudos);
-    this.setState({posts:responses, profile:profile, kudos:kudos});
+    // const { accounts, contract } = this.state;
+    // let count = await contract.methods.getPostCount().call({ from: accounts[0] });
+    // let responses = [];
+    // for(let i=0;i<count;i++){
+    //   let response = await contract.methods.getPosts(i).call({from: accounts[0]});
+    //   responses.push(response);
+    // }
+    // let profile = await contract.methods.myProfile().call({ from: accounts[0] });
+    // console.log(responses);
+    // console.log(profile);
+    // let kudos = [];
+    // let kcount = await contract.methods.tokenid().call({ from: accounts[0] });
+    // for(let k=0; k<kcount; k++){
+    //   let owner = await contract.methods.ownerOf(k).call({ from: accounts[0] });
+    //   if(owner == accounts[0]){
+    //     let tokenurli = await contract.methods.tokenURI(k).call({from:accounts[0]});
+    //     kudos.push(tokenurli);
+    //   }
+    // }
+    // console.log('Kudos is ');
+    // console.log(kudos);
+    // this.setState({posts:responses, profile:profile, kudos:kudos});
   };
 
   componentDidMount = async () => {
-    const obj = await getContractInstance();
-    this.setState({ web3:obj.web3, accounts:obj.accounts, contract: obj.contract});
-    this.runExample();
+    // const obj = await getContractInstance();
+    // this.setState({ web3:obj.web3, accounts:obj.accounts, contract: obj.contract});
+    // this.runExample();
   };
 
   render(){

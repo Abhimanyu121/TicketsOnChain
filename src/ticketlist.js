@@ -1,5 +1,5 @@
 import React from "react";
-import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody } from "shards-react";
+import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg } from "shards-react";
 export default class CreateToken extends React.Component{
   constructor(props){
     super(props);
@@ -86,6 +86,7 @@ export default class CreateToken extends React.Component{
               <div>
         
                 <Card>
+                 
                   
                   <CardBody className="WEB3">
                  <center>   <CardTitle>Please Connect to Web3</CardTitle>

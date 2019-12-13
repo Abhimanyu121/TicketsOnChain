@@ -54,10 +54,10 @@ class TrackHistory extends React.Component {
   runExample = async () => {
 
     // const { accounts, contract } = this.state;
-    // let count = await contract.methods.getPostCount().call({ from: accounts[0] });
+    // let count = await contract.methods.().call({ from: accounts[0] });
     // let responses = [];
     // for(let i=0;i<count;i++){
-    //   let response = await contract.methods.getPosts(i).call({from: accounts[0]});
+    //   let response = await contract.methods.ggetPostCountetPosts(i).call({from: accounts[0]});
     //   responses.push(response);
     // }
     // let profile = await contract.methods.myProfile().call({ from: accounts[0] });
@@ -158,7 +158,7 @@ class TrackHistory extends React.Component {
           </ListGroup>
         </Row>
 
-        <br/ >
+        <br />
           <hr />
             <h5>Your Tickets</h5>
             <Row>

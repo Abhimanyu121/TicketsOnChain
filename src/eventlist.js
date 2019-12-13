@@ -26,13 +26,12 @@ export default class CreateToken extends React.Component{
     this.toggle = this.toggle.bind(this);
     this.runExample = this.fetchEvent.bind(this);
     this.state = {
-      posts : [],
       contract : null,
-      accounts: this.props.superAccount,
       web3: null,
       eventList :[],
       superWeb3: this.props.web3,
-      superContract:this.props.contract
+      superContract:this.props.contract,
+      superAccount: this.props.account,
 
     };
     
@@ -43,9 +42,7 @@ export default class CreateToken extends React.Component{
     this.setState({ collapse: !this.state.collapse });
   }
   fetchEvent = async ()  => {
-    if(this.state.superWeb3!= undefined){
-      this.state.accounts = await this.state.superWeb3.eth.getAccounts();
-    }
+    
     const {contract } = this.state;
     let count = await contract.methods.eventCount().call();
     console.log("here");
@@ -72,7 +69,10 @@ export default class CreateToken extends React.Component{
         TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,
       );
-    this.setState({ web3:_web3, contract: instance});
+      let _superWeb3= this.props.web3;
+      let _superContract=this.props.contract;
+      let _superAccount= this.props.superAccount;
+    this.setState({ web3:_web3, contract: instance,superAccount:_superAccount,superWeb3: _superWeb3, superContract:_superContract});
     this.fetchEvent();
   };
 
@@ -80,53 +80,20 @@ export default class CreateToken extends React.Component{
 
   
   buyWithEth = async (_value, id) =>{
-    const {superContract,superWeb3,} = this.state;
+    const {superContract,superWeb3} = this.state;
     console.log(id);
     console.log("web3 not  available");
     if(this.state.superWeb3!= null){
       console.log("web3 available");
-      const accounts = superWeb3.eth.getAccounts();
-      //let response = await superContract.methods.buyTicketsEth(id).send({from: accounts[0], value: _value})
+     const superAccount = await superWeb3.eth.getAccounts();
+  // console.log(superAccount[0]);
+      //console.log(this.state.superWeb3.utils.toChecksumAddress(this.state.superAccount[0]));
+       let response = await superContract.methods.buyTicketsEth(id).send({from: superAccount[0], value: _value})
     }
+  
   }
   render(){
     let popup = <div>Transction in process</div>
-    // let w3c = <div><p>Please Connect Using a Wallet<br/><br/></p><Web3Connect.Button
-    //   network="kovan" // optional
-    //   providerOptions={{
-    //     walletconnect: {
-    //       package: WalletConnectProvider, // required
-    //       options: {
-    //         infuraId: "311ef590f7e5472a90edfa1316248cff" // required
-    //       }
-    //     },
-    //     torus: {
-    //       package: Torus, // required
-    //       options: {
-    //         enableLogging: false, // optional
-    //         buttonPosition: "bottom-left", // optional
-    //         buildEnv: "production", // optional
-    //         showTorusButton: true, // optional
-    //         enabledVerifiers: { // optional
-    //           google: false // optional
-    //         }
-    //       }
-    //     },
-    //   }}
-    //   onConnect={(provider) => {
-    //     const web3 = new Web3(provider);
-    //     this.props.parentCallback(web3);
-    //     this.state.superWeb3 = web3;
-    //     const deployedNetwork = TickesOnChain.networks[42];
-    //     const instance = new web3.eth.contract(
-    //       TickesOnChain.abi,
-    //       deployedNetwork && deployedNetwork.address,
-    //     );
-    //   }}
-    //   onClose={() => {
-    //     console.log("Web3Connect Modal Closed"); // modal has closed
-    //   }}
-    // /></div>;
     const conRequest = <p>Please Connect your web3 Wallet above</p>
     let toShow = null;
     if(this.state.superWeb3===undefined){
@@ -140,7 +107,6 @@ export default class CreateToken extends React.Component{
     }
     else {
       const listItems = this.state.eventList.map((item , index) =>
-      ////JSON.parse(item[3]).image
     <div style={{paddingLeft: "10%",paddingTop: "30px"}}>
     <Card style={{ maxWidth: "400px"}}>
       <script>console.log(item);</script>
@@ -153,12 +119,10 @@ export default class CreateToken extends React.Component{
         <h6> Venue:</h6>
         <h6> {"Pirce(in ETH):  "+item[0]+" ETH"}</h6>
         <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
-    <center><Button onClick={this.buyWithEth}>Buy With ETH</Button>
+    <center><Button value="yes"  onClick={()=>{this.buyWithEth(item[0],item[10])}}style ={{background :"#007bff",height:"30ox", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}>Buy With ETH</Button>
     </center>
     <br></br>
-    <center><Popup trigger={<button onClick = {this.buyWithEth(item[0],item[12])}style ={{background :"#007bff",height:"30ox", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}> Buy Using DAI</button>}>
-    <div>{toShow}</div>
-    </Popup>
+    <center><Button onClick = {this.buyWithEth(item[0],item[10])}style ={{background :"#007bff",height:"30ox", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}> Buy Using DAI</Button>
     </center>
     
 

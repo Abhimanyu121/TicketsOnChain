@@ -1,7 +1,8 @@
 import React from "react";
 import { Container,Row, FormInput, Button,Col, Card,CardHeader,CardTitle,CardBody,FormTextarea } from "shards-react";
 import { Marker, Popup } from 'react-leaflet';
-
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner'
 var ipfsClient = require('ipfs-http-client');
 
 export default class CreateReview extends React.Component{
@@ -43,7 +44,7 @@ export default class CreateReview extends React.Component{
     else if (target.name == "description") {
       this.setState(Object.assign({}, this.state, {description: target.value}));
     }
-    if (target.name == "Place"){
+    else if (target.name == "Place"){
       this.setState(Object.assign({}, this.state, {place: target.value}));
     }
     else if (target.name == "Date") {
@@ -62,10 +63,13 @@ export default class CreateReview extends React.Component{
       this.setState(Object.assign({}, this.state, {name: target.value}));
     }
   }
+  
   createEvent = async ()=>{
+    
     const {superContract, name, description, dai,eth, date, place,seats } = this.state;
     var ipfs = ipfsClient('ipfs.infura.io', '5001', { protocol: 'https' });
     let ipfsId;
+    
     ipfs.add([...this.state.added_file_hash], { progress: (prog) => console.log(`received: ${prog}`) })
       .then((response) => {
         console.log(response);
@@ -83,12 +87,26 @@ export default class CreateReview extends React.Component{
             const accounts = await superWeb3.eth.getAccounts();
             let desc = description +"\nDate: "+date+"\nPlace: "+place;
             await superContract.methods.createEvent(eth,dai,content,name,desc,seats).send({ from: accounts[0] });
+            
         })();
+        
         this.setState({});
+        
       }).catch((err) => {
         console.error(err);
       });
+      if(this.state.createEvent.length==0){
+        return(<center> <h6> Transaction <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+    
+       /></h6></center>);
+      } 
   }
+
   render(){
     if(this.state.superWeb3==null||this.state.superContract ==null){
       this.state.superWeb3= this.props.web3;
@@ -99,7 +117,10 @@ export default class CreateReview extends React.Component{
     if(this.state.superWeb3!= null ){
       console.log("bleh");
       console.log(this.state.superWeb3);
-      return(<div>
+      return(
+       
+      <div>
+         
     <Container className="main-container">
       <Row>
         <Col sm="12" md="12">
@@ -137,7 +158,7 @@ export default class CreateReview extends React.Component{
                 <CardTitle>Give Us an Image</CardTitle>
                 <FormInput type="file" theme="danger" onChange={this.captureFile} placeholder="Upload an Image" className="form-control"/>
                 <br /> <br />
-                <center><Button theme="success" onClick={this.createEvent}>Submit</Button></center>
+                <center><Button theme="success" onClick={this.createEvent} >Submit </Button></center>
               </CardBody>
             </Card>
           </div>
@@ -155,6 +176,14 @@ export default class CreateReview extends React.Component{
                 
                 <CardBody className="WEB3">
                <center>   <CardTitle>Please Connect to Web3</CardTitle>
+               <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={5000} //5 secs
+
+     />
                   </center>
                 </CardBody>
               </Card>
@@ -164,6 +193,6 @@ export default class CreateReview extends React.Component{
       </Container>
     </div>
    )}
-   
+  
   }
 }

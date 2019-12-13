@@ -6,6 +6,8 @@ import Torus from "@toruslabs/torus-embed";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import TickesOnChain from "./contracts/TicketsOnChain.json";
 import Web3 from "web3";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner'
 import {
   Row,
   Col,
@@ -103,15 +105,28 @@ export default class CreateToken extends React.Component{
       toShow = popup;
     }
     if(this.state.eventList.length==0){
-      return(<h6> Loading..:</h6>);
+      return(<center> <h6> Loading..: <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={3000} //3 secs
+
+     /></h6></center>);
     }
     else {
       const listItems = this.state.eventList.map((item , index) =>
-    <div style={{paddingLeft: "10%",paddingTop: "30px"}}>
-    <Card style={{ maxWidth: "400px"}}>
+    
+    <div style={{paddingLeft: "1%",paddingTop: "30px"}}>
+      
+    <Card >
       <script>console.log(item);</script>
+        <container><Row><Col>
       <CardImg src="https://storage.googleapis.com/opensea-prod.appspot.com/creature/50.png" style = {{maxHeight:"300px"}}/>
-      <CardBody>
+      </Col>
+      <Col>
+      <CardBody style={{marginBottom: "10px"}}>
+        
         <CardTitle>{item[4]}</CardTitle>
         <p>{item[9]}</p>
         <h6> Date:</h6>
@@ -119,18 +134,17 @@ export default class CreateToken extends React.Component{
         <h6> Venue:</h6>
         <h6> {"Pirce(in ETH):  "+item[0]+" ETH"}</h6>
         <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
-    <center><Button value="yes"  onClick={()=>{this.buyWithEth(item[0],item[10])}}style ={{background :"#007bff",height:"30ox", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}>Buy With ETH</Button>
-    </center>
-    <br></br>
-    <center><Button onClick = {this.buyWithEth(item[0],item[10])}style ={{background :"#007bff",height:"30ox", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}> Buy Using DAI</Button>
-    </center>
+    <Button value="yes"  onClick={()=>{this.buyWithEth(item[0],item[10])}}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px",float: "left"}}>Buy With ETH</Button>
+  
+    <Button onClick = {this.buyWithEth(item[0],item[10])}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px",float: "right"}}> Buy Using DAI</Button>
     
 
 
 
       </CardBody>
-
+      </Col></Row></container>
     </Card>
+    
     </div>
     );
       return(
@@ -140,7 +154,7 @@ export default class CreateToken extends React.Component{
         </ListGroup>
       </Row>
       );
-  
     }
+
   }
 }

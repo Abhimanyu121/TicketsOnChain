@@ -117,7 +117,7 @@ export default class CreateToken extends React.Component{
     else {
       const listItems = this.state.eventList.map((item , index) =>
     
-    <div style={{paddingLeft: "1%",paddingTop: "30px"}}>
+    <div style={{paddingLeft: "3%",paddingRight:"3%", paddingTop: "3%"}}>
       
     <Card >
       <script>console.log(item);</script>

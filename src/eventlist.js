@@ -129,15 +129,28 @@ export default class CreateToken extends React.Component{
         
         <CardTitle>{item[4]}</CardTitle>
         <p>{item[9]}</p>
-        <h6> Date:</h6>
-        <h6> Time:</h6>
+        <Row>
+          <Col>
+        <h6> Date:</h6> </Col>
+        <Col><h6> Time:</h6></Col>
+       
+        </Row>
         <h6> Venue:</h6>
-        <h6> {"Pirce(in ETH):  "+item[0]+" ETH"}</h6>
+       <Row>
+         <Col>
+        <h6> {"Pirce(in ETH):  "+item[0]+" ETH"}</h6></Col><Col>
         <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
-    <Button value="yes"  onClick={()=>{this.buyWithEth(item[0],item[10])}}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px",float: "left"}}>Buy With ETH</Button>
-  
-    <Button onClick = {this.buyWithEth(item[0],item[10])}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px",float: "right"}}> Buy Using DAI</Button>
-    
+        </Col>
+        </Row>
+        <br />
+        <Row>
+          <Col>
+    <Button value="yes"  onClick={()=>{this.buyWithEth(item[0],item[10])}}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}>Buy With ETH</Button>
+    </Col>
+    <Col>
+    <Button onClick = {this.buyWithEth(item[0],item[10])}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}> Buy Using DAI</Button>
+    </Col>
+    </Row>
 
 
 

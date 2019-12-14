@@ -25,6 +25,7 @@ export default class CreateToken extends React.Component{
     //this.state.walletConnector.killSession();
   }
   checkIn = async(id)=>{
+    let abc =false;
    
    // let provider = await Web3Connect.ConnectToInjected();
      let provider = await Web3Connect.ConnectToWalletConnect(
@@ -50,9 +51,12 @@ export default class CreateToken extends React.Component{
         deployedNetwork && deployedNetwork.address,
       );
       console.log(acc);
+     
       const  response = await instance.methods.checkIn(id).send({from: acc[0] });
       console.log(response);
       await provider.close();
+       abc =true;
+      return abc;
      // this.setState({web3:web3,instance:instance});
     
   }
@@ -116,8 +120,12 @@ export default class CreateToken extends React.Component{
     let _events =[];
     const accounts = await superWeb3.eth.getAccounts();
     let response = await superContract.methods.UserProfile().call({from:accounts[0]});
+    console.log("asdsad");
     console.log(response[0].length);
-    if(response[0].length==0){
+    if(response==null){
+      this.setState({zero:true});
+    }
+    else if(response[0].length==0){
       this.setState({zero:true});
     }
     for(let i =0; i<response[0].length;i++){
@@ -176,7 +184,12 @@ export default class CreateToken extends React.Component{
                 <CardTitle>{item[9]}</CardTitle>
                 <Button>Withdraw Amount</Button>
                 <t/><t/>
-                <Button onClick={async ()=>{await this.checkIn(item[10])}}>Start Checking in</Button>
+                <Button onClick={async ()=>{
+                  let con =true
+                  while(con){
+                    con =await this.checkIn(item[10])
+                  }
+                  }}>Start Checking in</Button>
                 <t/><t/>
                 <Button>End Event</Button>
               </CardBody>

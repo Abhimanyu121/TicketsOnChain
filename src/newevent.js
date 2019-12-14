@@ -158,7 +158,7 @@ export default class CreateReview extends React.Component{
                 <CardTitle>Give Us an Image</CardTitle>
                 <FormInput type="file" theme="danger" onChange={this.captureFile} placeholder="Upload an Image" className="form-control"/>
                 <br /> <br />
-                <center><Button theme="success" onClick={this.createEvent} >Submit </Button></center>
+                <center><Button theme="primary" onClick={this.createEvent} >Submit </Button></center>
               </CardBody>
             </Card>
           </div>

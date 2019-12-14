@@ -1,8 +1,8 @@
 import React from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
-import WalletConnect from "@walletconnect/browser";
-import WalletConnectQRCodeModal from "@walletconnect/qrcode-modal";
+//import WalletConnect from "@walletconnect/browser";
+//import WalletConnectQRCodeModal from "@walletconnect/qrcode-modal";
 import TickesOnChain from "./contracts/TicketsOnChain.json";
 import Web3Connect from "web3connect";
 import Web3 from "web3";
@@ -20,28 +20,24 @@ export default class CreateToken extends React.Component{
       accounts: this.props.account,
       superWeb3: this.props.web3,
       superContract:this.props.contract,
-      walletConnector: new WalletConnect({
-        bridge: "https://bridge.walletconnect.org" // Required
-      }),
+      
     }
     //this.state.walletConnector.killSession();
   }
   checkIn = async(id)=>{
-    const sleep = (milliseconds) => {
-      return new Promise(resolve => setTimeout(resolve, milliseconds))
-    }
+   
    // let provider = await Web3Connect.ConnectToInjected();
-    //  provider = await Web3Connect.ConnectToWalletConnect(
-    //   WalletConnectProvider,
-    //   {
-    //     infuraId: "311ef590f7e5472a90edfa1316248cff", // required
-    //     bridge: "https://bridge.walletconnect.org" // optional
-    //   }
-    // );
-    //console.log(provider);
-    // await provider.close();
-    //console.log(provider);
-     let provider =  new WalletConnectProvider({
+     let provider = await Web3Connect.ConnectToWalletConnect(
+      WalletConnectProvider,
+      {
+        infuraId: "311ef590f7e5472a90edfa1316248cff", // required
+        bridge: "https://bridge.walletconnect.org" // optional
+      }
+    );
+    console.log(provider);
+    await provider.close();
+    console.log(provider);
+      provider =  new WalletConnectProvider({
       infuraId: "311ef590f7e5472a90edfa1316248cff"
     });
    
@@ -53,18 +49,14 @@ export default class CreateToken extends React.Component{
         TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,
       );
-      await sleep(500); 
-      console.log(acc[0]);
-      await sleep(500); 
-      let response = await instance.methods.checkIn(id).send({from: acc[0] });
-      this.setState({web3:web3,instance:instance});
-      this.callfunc(id);
+      console.log(acc);
+      const  response = await instance.methods.checkIn(id).send({from: acc[0] });
+      console.log(response);
+      await provider.close();
+     // this.setState({web3:web3,instance:instance});
+    
   }
-  callfunc = async (id)=>{
-    const {web3,instance} = this.state;
-    const acc = await web3.eth.getAccounts();
-    await instance.methods.checkIn(id).send({from: acc[0] });
-  }
+  
   
   // checkIn = async (id) => {
   //   const sleep = (milliseconds) => {
@@ -126,7 +118,7 @@ export default class CreateToken extends React.Component{
     let response = await superContract.methods.UserProfile().call({from:accounts[0]});
     console.log(response[0].length);
     if(response[0].length==0){
-      this.state({zero:true});
+      this.setState({zero:true});
     }
     for(let i =0; i<response[0].length;i++){
       let event = await superContract.methods.eventMapping(response[0][i]).call();

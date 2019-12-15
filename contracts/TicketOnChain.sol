@@ -13,7 +13,7 @@ contract TicketsOnChain is ERC721MetadataMintable {
       address ownerAddress;
       string metadata;
       string name;
-      uint[] issuedTokens;
+      address[] checkedInUsers;
       mapping(address => bool) issuedAddressCheck;
       address[] issuedAddresses;
       bool active;
@@ -22,6 +22,7 @@ contract TicketsOnChain is ERC721MetadataMintable {
       uint ticketsIssued;
       string description;
       uint eventId;
+      uint checkInCount;
   }
   struct NFT{
     uint eventId;
@@ -51,9 +52,10 @@ contract TicketsOnChain is ERC721MetadataMintable {
         ownerAddress:msg.sender, 
         active:true,
         issuedAddresses :new address[](noOfTickets),
-        issuedTokens : new uint[](noOfTickets),
+        checkedInUsers : new address[](noOfTickets),
         dai:0,
         eth:0,
+        checkInCount:0,
         ticketsIssued:0,
         description :_description,
         eventId:eventCount
@@ -68,13 +70,18 @@ contract TicketsOnChain is ERC721MetadataMintable {
       require(eventMapping[eventId].ownerAddress ==msg.sender,"you cant call this function");
       eventMapping[eventId].active = false;
   }
+  function checkInList(uint _id) public view returns(address[] memory attendees, uint _totalTickets, string memory name , uint totalCheckin){
+      attendees = eventMapping[_id].checkedInUsers;
+      _totalTickets= eventMapping[_id].ticketsIssued;
+      name = eventMapping[_id].name;
+      totalCheckin = eventMapping[_id].checkInCount;
+  }
   function buyTicketsEth(uint eventId) public payable   returns(uint tokenId){
     require(eventMapping[eventId].ticketsIssued<eventMapping[eventId].issuedAddresses.length,"All tickets sold");
     require(msg.value>=eventMapping[eventId].priceInEth,"Insufficient value send");
     require(eventMapping[eventId].active ==true,"Event not available anymore");
     require(eventMapping[eventId].issuedAddressCheck[msg.sender]==false,"Ticket has been already bought with this address");
     uint  count = eventMapping[eventId].ticketsIssued;
-    eventMapping[eventId].issuedTokens[count]=tokenId;
     eventMapping[eventId].issuedAddressCheck[msg.sender]= true;
     eventMapping[eventId].issuedAddresses[count]= msg.sender;
     eventMapping[eventId].eth=eventMapping[eventId].eth+msg.value;
@@ -101,7 +108,7 @@ contract TicketsOnChain is ERC721MetadataMintable {
     
     
     uint  count = eventMapping[eventId].ticketsIssued;
-    eventMapping[eventId].issuedTokens[count]=tokenId;
+  //  eventMapping[eventId].issuedTokens[count]=tokenId;
     eventMapping[eventId].issuedAddressCheck[msg.sender]= true;
     eventMapping[eventId].issuedAddresses[count]= msg.sender;
     //eventMapping[eventId].eth=eventMapping[eventId].eth+msg.value;
@@ -122,8 +129,11 @@ contract TicketsOnChain is ERC721MetadataMintable {
    //  require(eventMapping[eventId].ownerAddress==msg.sender,"You are not authorized to do this");
      require(userMapping[msg.sender].notCheckedIn[eventId] == true,"You have already checked in");
      require(userMapping[msg.sender].checkedIn[eventId] != true, "You have already checkedIn");
+     uint count = eventMapping[eventId].checkInCount;
+     eventMapping[eventId].checkedInUsers[count]=msg.sender;
      userMapping[msg.sender].checkedIn[eventId]= true;
      userMapping[msg.sender].notCheckedIn[eventId]= false;
+     eventMapping[eventId].checkInCount++;
      status = true;
  }
  function UserProfile() public view returns (uint[] memory eventHost,uint[] memory eventList, bool[] memory statusList, uint[] memory tokenList){

@@ -7,6 +7,7 @@ import TickesOnChain from "./contracts/TicketsOnChain.json";
 import Web3Connect from "web3connect";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg, Button } from "shards-react";
 export default class CreateToken extends React.Component{
   constructor(props){
@@ -180,19 +181,16 @@ export default class CreateToken extends React.Component{
                 <CardTitle>{item[9]}</CardTitle>
                 <Button>Withdraw Amount</Button>
                 <t/><t/>
-                <Button onClick={async ()=>{
-                  let con =true
-                  while(con){
-                    try{
-                      con =await this.checkIn(item[10])
-                    }
-                    catch(err){
-                      
-                    }
-                    
-                    console.log(con+"asdads");
+                <Link to = {{
+                  pathname: '/check-in',
+                  aboutProps:{
+                    id: item[10],
+                    superContract: this.state.superContract,
+                    superWeb3: this.state.superWeb3
                   }
-                  }}>Start Checking in</Button>
+                }}>
+                <Button >Start Checking in</Button>
+                </Link>
                 <t/><t/>
                 <Button>End Event</Button>
               </CardBody>
@@ -251,3 +249,16 @@ export default class CreateToken extends React.Component{
   }
 
 }
+// onClick={async ()=>{
+//   let con =true
+//   while(con){
+//     try{
+//       con =await this.checkIn(item[10])
+//     }
+//     catch(err){
+      
+//     }
+    
+//     console.log(con+"asdads");
+//   }
+//   }}

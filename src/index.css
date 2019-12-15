@@ -5,6 +5,9 @@
 body {
   background-image: linear-gradient(to left, #71ffd2, #2060a0),linear-gradient(to left, #ff512f, #dd2476);
   background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  background-size: cover;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 

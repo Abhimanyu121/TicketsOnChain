@@ -11,6 +11,7 @@ export default class CheckIn extends React.Component{
   
   constructor(props){
     super(props);
+    console.log("loca props")
     console.log(props);
     this.state={
       superWeb3 : this.props.location.aboutProps.superWeb3,
@@ -34,12 +35,12 @@ export default class CheckIn extends React.Component{
       addresses.push(event["attendees"][i]);
     }
     let zero =false
-    if(addresses.length===0){
+    if(addresses.length==0){
       zero =true;
     }
     console.log(addresses);
     console.log("zero "+zero)
-    this.setState({event:event,addresses:event["attendees"],fetching :false,zero:zero });
+    this.setState({event:event,addresses:addresses,fetching :false,zero:zero });
   }
   checkIn = async(id)=>{
    let flag =true;
@@ -115,7 +116,7 @@ export default class CheckIn extends React.Component{
                     <CardTitle>Event name: {this.state.event["name"]}</CardTitle>
                     <CardTitle>Number of tickets: {parseInt(this.state.event["_totalTickets"])}</CardTitle>
                     <CardTitle>Number of Check-In: {parseInt(this.state.event["totalCheckin"])}</CardTitle>
-                    <center><Button outline pill onClick={()=>{this.checkIn()}}> Check-In</Button></center>
+                    <center><Button outline pill onClick={()=>{this.checkIn(this.state.eventId)}}> Check-In</Button></center>
                   </CardBody>
                 </Card>
                </div>
@@ -147,7 +148,7 @@ export default class CheckIn extends React.Component{
 
     }
     else{
-      let checkInList = this.state.adressess.map((item, index)=>
+      let checkInList = this.state.addresses.map((item, index)=>
      
       <CardTitle>{item}</CardTitle>);
       return (
@@ -171,7 +172,7 @@ export default class CheckIn extends React.Component{
             </Row>
             <br/><br/><br/><br/>
             <Card style={{marginTop: "30px"}}>
-              <CardHeader>Event</CardHeader>
+              <CardHeader>Check-In</CardHeader>
                 <CardBody className="Ticket">
                 {checkInList}
               </CardBody>

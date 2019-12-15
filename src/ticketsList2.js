@@ -7,7 +7,7 @@ import TickesOnChain from "./contracts/TicketsOnChain.json";
 import Web3Connect from "web3connect";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg, Button } from "shards-react";
+import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody} from "shards-react";
 export default class ticketsList extends React.Component{
   constructor(props){
     super(props);
@@ -148,7 +148,7 @@ export default class ticketsList extends React.Component{
         if(!this.state.flag){
           listHost = <center> <h6> Loading..: <Loader
           type="Puff"
-          color="#00BFFF"
+          color="black"
           height={100}
           width={100}
           timeout={3000} //3 secs

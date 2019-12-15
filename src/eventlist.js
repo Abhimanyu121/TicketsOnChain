@@ -138,7 +138,19 @@ export default class CreateToken extends React.Component{
        
        <Row>
          <Col>
-        <h6> {"Pirce(in ETH):  "+item[0]+" ETH"}</h6></Col><Col>
+        <h6> {"Price(in ETH):  "+item[0]+" ETH"}</h6></Col>
+        <Col>
+          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
+    </Col>
+        </Row>
+        <br />
+        <Row>
+         
+    
+    <Col>
+    <Button outline pill onClick = {this.buyWithEth(item[0],item[10])}> Buy With DAI</Button>
+    </Col>
+    <Col>
         <Button outline pill value="yes"  onClick={()=>{
       if((this.state.superWeb3==null||this.state.superContract ==null)&&(this.props.web3!=null)){
         this.state.superWeb3= this.props.web3;
@@ -156,16 +168,6 @@ export default class CreateToken extends React.Component{
       }> Buy With ETH</Button>
         
         </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
-          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
-    </Col>
-    <br /> 
-    <Col>
-    <Button outline pill onClick = {this.buyWithEth(item[0],item[10])}> Buy Using DAI</Button>
-    </Col>
     </Row>
 
 

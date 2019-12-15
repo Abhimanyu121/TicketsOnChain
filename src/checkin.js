@@ -117,7 +117,7 @@ export default class CheckIn extends React.Component{
       return(
         <center> <h6> Loading..: <Loader
           type="Puff"
-          color="#00BFFF"
+          color="black"
           height={100}
           width={100}
           timeout={3000} //3 secs

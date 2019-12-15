@@ -4,17 +4,13 @@ import {
   Row,
   Col,
   Container,
-  Button,
   Card,
-  CardFooter,
   CardBody,
   CardTitle,
   CardHeader,
   CardImg,
   ListGroup,
-  ListGroupItem,
 } from 'shards-react';
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import EditProfile from '3box-profile-edit-react';
 export default class Profile extends React.Component {
   constructor(props){
@@ -44,17 +40,7 @@ export default class Profile extends React.Component {
    
   
  if(this.state.superWeb3!= null && this.state.superContract !=null){
-  const{space,box,account} = this.state;
-  const cbox = 
-   <EditProfile
-        // required
-        box={box}
-        space={space}
-        currentUserAddr={account}
-        // optional
-     
-   />
-;
+  
       return (
         <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
           <Container className="main-container">
@@ -128,7 +114,7 @@ class ProfileView extends React.Component {
           <Col sm="12" md="3">
               <CardImg width="200" src="https://c.gitcoin.co/avatars/0357f94b529985a8a898ab338add0edf/djrosenbaum.png" /> <br /> <br/>
               <h3><b>Daniel</b></h3>
-              <h5><b><a href="/#/edit-profile">Edit Profile</a></b></h5>
+              <h5><b><a href="/#/edit-profile" style={{color: "white"}}>Edit Profile</a></b></h5>
           </Col>
           <Col sm="12" md="9">
             <div>

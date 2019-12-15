@@ -1,9 +1,7 @@
 .main-container {
   padding: 5%;
 }
-body {
-  background-image: url("bg2.jpg");
-}
+
 .container {
   max-width: 90% !important;
 }

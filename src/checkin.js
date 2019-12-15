@@ -1,11 +1,11 @@
 import React from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import TickesOnChain from "./contracts/TicketsOnChain.json";
 import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg, Button } from "shards-react";
-
-
-
-
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3 from "web3";
+import Web3Connect from "web3connect";
 
 export default class CheckIn extends React.Component{
   
@@ -41,7 +41,51 @@ export default class CheckIn extends React.Component{
     console.log("zero "+zero)
     this.setState({event:event,addresses:event["attendees"],fetching :false,zero:zero });
   }
-  
+  checkIn = async(id)=>{
+   let flag =true;
+   while(flag){
+      try{
+        let provider = await Web3Connect.ConnectToWalletConnect(
+          WalletConnectProvider,
+          {
+            infuraId: "311ef590f7e5472a90edfa1316248cff", // required
+            bridge: "https://bridge.walletconnect.org" // optional
+          }
+        );
+        if(provider.wc.connected){
+         await provider.close();
+        }
+         console.log(provider);
+        // await provider.close();
+         console.log(provider);
+         provider =  new WalletConnectProvider({
+          infuraId: "311ef590f7e5472a90edfa1316248cff"
+         });
+       
+         await provider.enable()
+         console.log("enabled");
+         console.log(provider);
+         const web3 = new Web3(provider);
+          let acc = await web3.eth.getAccounts();
+          const deployedNetwork = TickesOnChain.networks[42];
+          const instance = new web3.eth.Contract(
+            TickesOnChain.abi,
+            deployedNetwork && deployedNetwork.address,
+          );
+          console.log(acc);
+         
+          const  response = await instance.methods.checkIn(id).send({from: acc[0] });
+          console.log(response);
+          await provider.close();
+      }
+      catch(e){
+        console.log(e);
+        flag = false;
+      }
+    
+   }
+ 
+  }
   render(){
     if(this.state.fetching){
       return(
@@ -70,7 +114,7 @@ export default class CheckIn extends React.Component{
                     <CardTitle>Event name: {this.state.event["name"]}</CardTitle>
                     <CardTitle>Number of tickets: {parseInt(this.state.event["_totalTickets"])}</CardTitle>
                     <CardTitle>Number of Check-In: {parseInt(this.state.event["totalCheckin"])}</CardTitle>
-                    <center><Button outline pill> Check-In</Button></center>
+                    <center><Button outline pill onClick={()=>{this.checkIn()}}> Check-In</Button></center>
                   </CardBody>
                 </Card>
                </div>

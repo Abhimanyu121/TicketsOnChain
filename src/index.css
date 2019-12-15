@@ -1,11 +1,13 @@
 .main-container {
   padding: 5%;
 }
+
 body {
   background-image: linear-gradient(to left, #71ffd2, #2060a0),linear-gradient(to left, #ff512f, #dd2476);
   background-repeat: no-repeat;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 .container {
   max-width: 90% !important;
 }

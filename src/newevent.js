@@ -85,7 +85,7 @@ export default class CreateReview extends React.Component{
               }
             );
             const accounts = await superWeb3.eth.getAccounts();
-            let desc = description +"\nDate: "+date+"\nPlace: "+place;
+            let desc = description +"\n\tDate: "+date+"\n\tPlace: "+place;
             await superContract.methods.createEvent(eth,dai,content,name,desc,seats).send({ from: accounts[0] });
             
         })();
@@ -95,16 +95,16 @@ export default class CreateReview extends React.Component{
       }).catch((err) => {
         console.error(err);
       });
-      if(this.state.createEvent.length==0){
-        return(<center> <h6> Transaction <Loader
-          type="Puff"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={3000} //3 secs
+      // if(this.state.createEvent.length==0){
+      //   return(<center> <h6> Transaction <Loader
+      //     type="Puff"
+      //     color="#00BFFF"
+      //     height={100}
+      //     width={100}
+      //     timeout={3000} //3 secs
     
-       /></h6></center>);
-      } 
+      //  /></h6></center>);
+      // } 
   }
 
   render(){

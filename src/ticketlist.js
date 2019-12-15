@@ -179,8 +179,7 @@ export default class CreateToken extends React.Component{
               <CardBody className="Ticket">
                 <CardTitle>{item[4]}</CardTitle>
                 <CardTitle>{item[9]}</CardTitle>
-                <Button>Withdraw Amount</Button>
-                <t/><t/>
+                
                 <Link to = {{
                   pathname: '/check-in',
                   aboutProps:{
@@ -189,8 +188,10 @@ export default class CreateToken extends React.Component{
                     superWeb3: this.state.superWeb3
                   }
                 }}>
-                <Button outline pill >Start Checking in</Button>
+                <Button outline pill >Start Checking In</Button>
                 </Link>
+                <t/><t/>
+                <Button outline pill>Withdraw Amount</Button>
                 <t/><t/>
                 <Button outline pill>End Event</Button>
               </CardBody>

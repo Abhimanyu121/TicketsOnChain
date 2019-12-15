@@ -20,6 +20,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'shards-react';
+import { isWhiteSpaceLike } from "typescript";
 
 
 
@@ -118,10 +119,12 @@ export default class CreateToken extends React.Component{
     }
     else {
       const listItems = this.state.eventList.map((item , index) =>
-    
-    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%"}}>
-      
-    <Card style={{maxHeight:"245px"}}>
+     
+    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+  }}>
+       
+    <Card style={{maxHeight:"310px"}}>
+    <CardHeader>Event</CardHeader>
       <script>console.log(item);</script>
         <container><Row><Col>
      <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
@@ -159,6 +162,7 @@ export default class CreateToken extends React.Component{
           <Col>
           <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
     </Col>
+    <br /> 
     <Col>
     <Button outline pill onClick = {this.buyWithEth(item[0],item[10])}> Buy Using DAI</Button>
     </Col>

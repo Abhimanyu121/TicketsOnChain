@@ -2,10 +2,9 @@
   padding: 5%;
 }
 body {
-  background-image: url("bg2.jpg");
-  max-width: 100%;
-  max-height: 100%;
+  background-image: linear-gradient(to left, #71ffd2, #2060a0),linear-gradient(to left, #ff512f, #dd2476);
   background-repeat: no-repeat;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .container {
   max-width: 90% !important;
@@ -20,7 +19,7 @@ body {
 }
 
 .navbar-class{
-  background-color: transparent !important;
+  background-color: rgba(29, 31, 32, 0.932) !important;
 }
 
 .badge {
@@ -50,9 +49,10 @@ body {
 }
 
 .nav-link {
-  color: rgb(0, 0, 0) !important;
-  font-weight: 600;
+  color: rgb(255, 255, 255) !important;
+  font-weight: 400;
   font-size: 150%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   
   
 }

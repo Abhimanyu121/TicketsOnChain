@@ -13,7 +13,7 @@ export default class CreateToken extends React.Component{
   
   render(){
     return (
-        <div>
+        <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
         <Container className="main-container">
           <Row>
             <Col sm="12" md="12">

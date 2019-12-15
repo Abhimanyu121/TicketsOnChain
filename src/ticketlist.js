@@ -154,7 +154,7 @@ export default class CreateToken extends React.Component{
        /></h6></center>;
         }
         else if(this.state.zero){
-          listHost =  <Container className="main-container">
+          listHost =  <Container className="main-container" style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
           <Row>
             <Col sm="12" md="12">
               <div>

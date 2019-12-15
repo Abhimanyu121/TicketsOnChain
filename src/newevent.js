@@ -119,7 +119,7 @@ export default class CreateReview extends React.Component{
       console.log(this.state.superWeb3);
       return(
        
-      <div>
+      <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
          
     <Container className="main-container">
       <Row>

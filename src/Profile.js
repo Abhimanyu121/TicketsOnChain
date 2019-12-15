@@ -56,7 +56,7 @@ export default class Profile extends React.Component {
    />
 ;
       return (
-        <div>
+        <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
           <Container className="main-container">
           <Row>
            

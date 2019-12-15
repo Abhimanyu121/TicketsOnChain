@@ -6,6 +6,7 @@ import Torus from "@toruslabs/torus-embed";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import TickesOnChain from "./contracts/TicketsOnChain.json";
 import Web3 from "web3";
+import { useAlert } from 'react-alert'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
 import {
@@ -63,6 +64,7 @@ export default class CreateToken extends React.Component{
   componentDidMount = async () => {
     //const provider = await Web3Connect.ConnectToInjected();
       // Get network provider and web3 instance.
+      
       const _web3 = new  Web3(new Web3.providers.WebsocketProvider("wss://kovan.infura.io/ws"));
       const networkId = await _web3.eth.net.getId();
       const deployedNetwork = TickesOnChain.networks[networkId];
@@ -71,10 +73,10 @@ export default class CreateToken extends React.Component{
         TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,
       );
-      let _superWeb3= this.props.web3;
-      let _superContract=this.props.contract;
-      let _superAccount= this.props.superAccount;
-    this.setState({ web3:_web3, contract: instance,superAccount:_superAccount,superWeb3: _superWeb3, superContract:_superContract});
+      // let _superWeb3= this.props.web3;
+      // let _superContract=this.props.contract;
+      // let _superAccount= this.props.superAccount;
+    this.setState({ web3:_web3, contract: instance});
     this.fetchEvent();
   };
 
@@ -129,23 +131,33 @@ export default class CreateToken extends React.Component{
 
         <CardTitle>{item[4]}</CardTitle>
         <p>{item[9]}</p>
-        <Row>
-          <Col>
-        <h6> Date:</h6> </Col>
-        <Col><h6> Time:</h6></Col>
+    
        
-        </Row>
-        <h6> Venue:</h6>
        <Row>
          <Col>
         <h6> {"Pirce(in ETH):  "+item[0]+" ETH"}</h6></Col><Col>
-        <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
+        <Button value="yes"  onClick={()=>{
+      if((this.state.superWeb3==null||this.state.superContract ==null)&&(this.props.web3!=null)){
+        this.state.superWeb3= this.props.web3;
+        this.state.superContract=this.props.contract;
+        this.state.accounts=this.props.account;
+        if(this.state.superWeb3==null||this.state.superContract ==null){
+          const alert = useAlert()
+          alert.show("Please connect to web3");
+        }
+      }
+      else if(this.state.superWeb3!=null||this.state.superContract !=null){
+        this.buyWithEth(item[0],item[10])}
+      }
+      
+      }style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}>Buy With ETH</Button>
+        
         </Col>
         </Row>
         <br />
         <Row>
           <Col>
-    <Button value="yes"  onClick={()=>{this.buyWithEth(item[0],item[10])}}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}>Buy With ETH</Button>
+          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
     </Col>
     <Col>
     <Button onClick = {this.buyWithEth(item[0],item[10])}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}> Buy Using DAI</Button>

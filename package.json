@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "3box": "^1.15.0",
+    "3box-profile-edit-react": "0.0.1-beta.6",
     "@toruslabs/torus-embed": "^0.2.9",
     "@walletconnect/browser": "^1.0.0-beta.39",
     "@walletconnect/qrcode-modal": "^1.0.0-beta.39",
@@ -14,6 +16,8 @@
     "leaflet": "^1.5.1",
     "node-cache": "^4.2.1",
     "react": "^16.9.0",
+    "react-alert": "^6.0.0",
+    "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.9.0",
     "react-leaflet": "^2.4.0",
     "react-loader-spinner": "^3.1.5",

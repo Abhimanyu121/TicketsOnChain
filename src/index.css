@@ -7,6 +7,7 @@ body {
   background-repeat: no-repeat;
   max-width: 100%;
   max-height: 100%;
+  background-repeat: repeat-y;
   background-size: cover;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

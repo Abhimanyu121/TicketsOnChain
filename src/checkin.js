@@ -81,7 +81,7 @@ export default class CheckIn extends React.Component{
       }
       catch(e){
         console.log(e);
-        flag = false;
+        //flag = false;
       }
     
    }
@@ -164,7 +164,7 @@ export default class CheckIn extends React.Component{
                         <CardTitle>Event name: {this.state.event["name"]}</CardTitle>
                         <CardTitle>Number of tickets: {parseInt(this.state.event["_totalTickets"])}</CardTitle>
                         <CardTitle>Number of Check-In: {parseInt(this.state.event["totalCheckin"])}</CardTitle>
-                      <center><Button outline pill> Check-In</Button></center>
+                      <center><Button outline pill onClick={()=>{this.checkIn(this.state.eventId)}} > Check-In</Button></center>
                       </CardBody>
                     </Card>
                 </div>

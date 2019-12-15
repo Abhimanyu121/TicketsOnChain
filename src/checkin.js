@@ -87,6 +87,7 @@ export default class CheckIn extends React.Component{
  
   }
   render(){
+
     if(this.state.fetching){
       return(
         <center> <h6> Loading..: <Loader
@@ -101,7 +102,7 @@ export default class CheckIn extends React.Component{
     }
     if(this.state.zero){
       return (
-        <div>
+       <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
           
         <Container className="main-container">
         <Col>
@@ -150,7 +151,7 @@ export default class CheckIn extends React.Component{
      
       <CardTitle>{item}</CardTitle>);
       return (
-        <div>
+        <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
           <Container className="main-container">
             <Col>
               <Row>

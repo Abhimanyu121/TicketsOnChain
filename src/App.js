@@ -5,6 +5,7 @@ import Web3Connect from "web3connect";
 //import WalletConnectProvider from "@walletconnect/web3-provider";
 import Torus from "@toruslabs/torus-embed";
 import Web3 from "web3";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import "./App.css";

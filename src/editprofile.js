@@ -36,7 +36,7 @@ export default class CreateReview extends React.Component<{}, State> {
   }
   render(){
     return(
-      <div>
+      <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
         <Container className="main-container">
           <Row>
             <Col sm="12" md="12">

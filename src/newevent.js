@@ -1,8 +1,6 @@
 import React from "react";
 import { Container,Row, FormInput, Button,Col, Card,CardHeader,CardTitle,CardBody,FormTextarea } from "shards-react";
-import { Marker, Popup } from 'react-leaflet';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-import Loader from 'react-loader-spinner'
 var ipfsClient = require('ipfs-http-client');
 
 export default class CreateReview extends React.Component{
@@ -98,7 +96,7 @@ export default class CreateReview extends React.Component{
       // if(this.state.createEvent.length==0){
       //   return(<center> <h6> Transaction <Loader
       //     type="Puff"
-      //     color="#00BFFF"
+      //     color="black"
       //     height={100}
       //     width={100}
       //     timeout={3000} //3 secs

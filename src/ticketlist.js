@@ -8,7 +8,7 @@ import Web3Connect from "web3connect";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg, Button } from "shards-react";
+import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody, Button } from "shards-react";
 export default class CreateToken extends React.Component{
   constructor(props){
     super(props);
@@ -118,7 +118,7 @@ export default class CreateToken extends React.Component{
     const accounts = await superWeb3.eth.getAccounts();
     let response = await superContract.methods.UserProfile().call({from:accounts[0]});
     console.log("asdsad");
-    console.log(response[0].length);
+    console.log(response[1].length);
     if(response==null){
       this.setState({zero:true});
     }
@@ -146,7 +146,7 @@ export default class CreateToken extends React.Component{
         if(!this.state.flag){
           listHost = <center> <h6> Loading..: <Loader
           type="Puff"
-          color="#00BFFF"
+          color="black"
           height={100}
           width={100}
           timeout={3000} //3 secs

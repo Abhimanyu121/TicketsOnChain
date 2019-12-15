@@ -131,23 +131,12 @@ export default class CreateToken extends React.Component{
 
         <CardTitle>{item[4]}</CardTitle>
         <p>{item[9]}</p>
-        <Row>
-          <Col>
-        <h6> Date:</h6> </Col>
-        <Col><h6> Time:</h6></Col>
+    
        
-        </Row>
-        <h6> Venue:</h6>
        <Row>
          <Col>
         <h6> {"Pirce(in ETH):  "+item[0]+" ETH"}</h6></Col><Col>
-        <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
-        </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
-    <Button value="yes"  onClick={()=>{
+        <Button value="yes"  onClick={()=>{
       if((this.state.superWeb3==null||this.state.superContract ==null)&&(this.props.web3!=null)){
         this.state.superWeb3= this.props.web3;
         this.state.superContract=this.props.contract;
@@ -162,6 +151,13 @@ export default class CreateToken extends React.Component{
       }
       
       }style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}>Buy With ETH</Button>
+        
+        </Col>
+        </Row>
+        <br />
+        <Row>
+          <Col>
+          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
     </Col>
     <Col>
     <Button onClick = {this.buyWithEth(item[0],item[10])}style ={{background :"#007bff",height:"30px", width:"200px", color :"#fff", border: "#007bff",radius:"25px"}}> Buy Using DAI</Button>

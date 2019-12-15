@@ -9,7 +9,15 @@ import {
 
 
 
-export default class CreateToken extends React.Component{
+export default class CheckIn extends React.Component{
+  constructor(props){
+    this.state={
+      superWeb3 : this.props.location.superWeb3,
+      superContract :this.props.location.superContract,
+      eventId: this.props.location.id,
+      addresses: [],
+    }
+  }
   
   render(){
     return (

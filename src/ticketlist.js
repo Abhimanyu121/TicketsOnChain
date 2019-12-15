@@ -189,10 +189,10 @@ export default class CreateToken extends React.Component{
                     superWeb3: this.state.superWeb3
                   }
                 }}>
-                <Button >Start Checking in</Button>
+                <Button outline pill >Start Checking in</Button>
                 </Link>
                 <t/><t/>
-                <Button>End Event</Button>
+                <Button outline pill>End Event</Button>
               </CardBody>
             </Card>
         );

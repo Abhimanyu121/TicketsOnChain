@@ -55,7 +55,7 @@ export default class CreateReview extends React.Component<{}, State> {
                     <FormInput name="phone" value={this.state.phone} onChange={this.handleInput} />
                     <br />
                     
-                    <center><Button theme="success" onClick={this.runExample}>Save Changes</Button></center>
+                    <center><Button outline pill onClick={this.runExample}>Save Changes</Button></center>
                   </CardBody>
                 </Card>
               </div>

@@ -1,7 +1,9 @@
 .main-container {
   padding: 5%;
 }
-
+body {
+  background-image: url("bg2.jpg");
+}
 .container {
   max-width: 90% !important;
 }
@@ -15,7 +17,7 @@
 }
 
 .navbar-class{
-  background-color: #757e85 !important;
+  background-color: transparent !important;
 }
 
 .badge {
@@ -45,7 +47,11 @@
 }
 
 .nav-link {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
+  font-weight: 600;
+  font-size: 150%;
+  
+  
 }
 
 .leaflet-container {

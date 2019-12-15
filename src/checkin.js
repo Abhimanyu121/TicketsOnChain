@@ -31,7 +31,7 @@ export default class CheckIn extends React.Component{
           <CardBody>
             <CardTitle>Event name</CardTitle>
             <CardTitle>Number of tickets:</CardTitle>
-           <center><Button theme="success"> Check-In</Button></center>
+           <center><Button outline pill> Check-In</Button></center>
           </CardBody>
         </Card>
         </div>

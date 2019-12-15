@@ -127,7 +127,7 @@ export default class NavExample extends React.Component {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={this.navlink} active to="/event-list" className="nav-link">
+              <NavLink onClick={this.navlink}  active to="/event-list" className="nav-link">
               Events
               </NavLink>
             </NavItem>
@@ -145,7 +145,7 @@ export default class NavExample extends React.Component {
               Hosted Events </NavLink>
             </NavItem>
           </Nav>
-
+   <hr />
           <Nav navbar className="ml-auto">
             <NavItem>
               <NavLink className="ml-auto">

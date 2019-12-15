@@ -63,7 +63,7 @@ export default class CreateReview extends React.Component{
   }
   
   createEvent = async ()=>{
-    
+    alert("Uploading..");
     const {superContract, name, description, dai,eth, date, place,seats } = this.state;
     var ipfs = ipfsClient('ipfs.infura.io', '5001', { protocol: 'https' });
     let ipfsId;
@@ -156,7 +156,7 @@ export default class CreateReview extends React.Component{
                 <CardTitle>Give Us an Image</CardTitle>
                 <FormInput type="file" theme="danger" onChange={this.captureFile} placeholder="Upload an Image" className="form-control"/>
                 <br /> <br />
-                <center><Button outline pill onClick={this.createEvent} >Submit </Button></center>
+                <center><Button outline pill onMouseUp={this.createEvent} >Submit </Button></center>
               </CardBody>
             </Card>
           </div>

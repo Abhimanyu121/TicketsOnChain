@@ -29,7 +29,9 @@ export default class CheckIn extends React.Component{
 
     console.log(this.state.eventId);
     this.fetchEventData();
+    
   }
+ 
   mountStuff = async ()=>{
     let {superWeb3,superContract,eventId} = this.state;
     if (this.props.location.aboutProps===undefined){
@@ -67,26 +69,30 @@ export default class CheckIn extends React.Component{
   }
   checkIn = async(id)=>{
    let flag =true;
- 
+    while(flag){
       try{
-        let provider = await Web3Connect.ConnectToWalletConnect(
+        let  provider = await Web3Connect.ConnectToInjected();
+        console.log("injected");
+        console.log(provider);
+         provider = await Web3Connect.ConnectToWalletConnect(
           WalletConnectProvider,
           {
             infuraId: "311ef590f7e5472a90edfa1316248cff", // required
             bridge: "https://bridge.walletconnect.org" // optional
           }
         );
+        console.log(provider);
         if(provider.wc.connected){
          await provider.close();
-        }
-  
-        // await provider.close();
-         console.log(provider);
          provider =  new WalletConnectProvider({
           infuraId: "311ef590f7e5472a90edfa1316248cff"
          });
        
-         await provider.enable()
+        }
+        await provider.enable()
+        // await provider.close();
+         console.log(provider);
+         
          console.log("enabled");
          console.log(provider);
          const web3 = new Web3(provider);
@@ -105,9 +111,9 @@ export default class CheckIn extends React.Component{
           }
       catch(e){
         console.error(e);
-        //flag = false;
+        flag = false;
       }
-    
+    }
    }
  
   
@@ -140,7 +146,9 @@ export default class CheckIn extends React.Component{
                     <CardTitle>Event name: {this.state.event["name"]}</CardTitle>
                     <CardTitle>Number of tickets: {parseInt(this.state.event["_totalTickets"])}</CardTitle>
                     <CardTitle>Number of Check-In: {parseInt(this.state.event["totalCheckin"])}</CardTitle>
-                    <center><Button outline pill onClick={()=>{this.checkIn(this.state.eventId)}}> Check-In</Button></center>
+                    <center><Button outline pill onClick={()=>{this.checkIn(this.state.eventId)}}> Check-In</Button></center><br/><br/>
+                    <center><Button outline pill onClick={()=>{this.fetchEventData()}}> Refresh</Button></center>
+
                   </CardBody>
                 </Card>
                </div>
@@ -188,7 +196,8 @@ export default class CheckIn extends React.Component{
                         <CardTitle>Event name: {this.state.event["name"]}</CardTitle>
                         <CardTitle>Number of tickets: {parseInt(this.state.event["_totalTickets"])}</CardTitle>
                         <CardTitle>Number of Check-In: {parseInt(this.state.event["totalCheckin"])}</CardTitle>
-                      <center><Button outline pill onClick={()=>{this.checkIn(this.state.eventId)}} > Check-In</Button></center>
+                      <center><Button outline pill onMouseUp={()=>{this.checkIn(this.state.eventId)}} > Check-In</Button></center><br/><br/>
+                      <center><Button outline pill onMouseUp={()=>{this.fetchEventData()}}> Refresh</Button></center>
                       </CardBody>
                     </Card>
                 </div>

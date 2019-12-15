@@ -13,11 +13,12 @@ import {
 import './index.css';
 import NavExample from './Navbar';
 import NewEvent from './newevent';
-import TicketList from './ticketlist';
+import HostedEvents from './ticketlist';
 import Profile from './Profile';
 import EventList from './eventlist';
 import EditProfile from './editprofile';
 import CheckIn from './checkin';
+import Tickets from './ticketsList2';
 
 const NodeCache = require( "node-cache" );
 const myCache = new NodeCache();
@@ -50,9 +51,10 @@ class Main extends React.Component {
       <NavExample web3 ={this.state.superWeb3} contract = {this.state.superContract} setSuperAccount = {this.setSuperAccount} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>
       <HashRouter>
         <Route path="/new-event" render = {()=><NewEvent web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
-        <Route path="/ticket-list" render = {()=><TicketList web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
+        <Route path="/hostedEvents" render = {()=><HostedEvents web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/event-list" render = {()=><EventList web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
-        <Route path="/profile" component={Profile}/>
+        <Route path="/profile" render = {()=><Profile web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
+        <Route path="/ticket-list" render = {()=><Tickets web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/edit-profile" component={EditProfile}/>
         <Route path="/check-in" component={CheckIn}/>
       </HashRouter>

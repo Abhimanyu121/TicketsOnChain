@@ -124,6 +124,7 @@ export default class CreateToken extends React.Component{
     else if(response[0].length==0){
       this.setState({zero:true});
     }
+    console.log(response);
     for(let i =0; i<response[0].length;i++){
       let event = await superContract.methods.eventMapping(response[0][i]).call();
       _events.push(event);
@@ -214,21 +215,7 @@ export default class CreateToken extends React.Component{
             </Row>
           </Container>
           <Container className="main-container">
-            <Row>
-              <Col sm="12" md="12">
-                <div>
-                  <h3>Your Tickets</h3><hr/> <br />
-                  <Card>
-                    <CardHeader>Ticket</CardHeader>
-                    <CardBody className="Ticket">
-                      <CardTitle>Place:</CardTitle>
-                      <CardTitle>Date:</CardTitle>
-                      <CardTitle>Purchased in:</CardTitle>
-                    </CardBody>
-                  </Card>
-                </div>
-              </Col>
-            </Row>
+            
           </Container>
         </div>
         

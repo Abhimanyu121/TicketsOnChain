@@ -1,5 +1,5 @@
 import React from "react";
-
+import Box from "3box";
 import {
   Row,
   Col,
@@ -15,118 +15,113 @@ import {
   ListGroupItem,
 } from 'shards-react';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
+import EditProfile from '3box-profile-edit-react';
 export default class Profile extends React.Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      superWeb3:this.props.web3,
+      superContract:this.props.contract,
+      space:null,
+      account:null,
+      box:null
+
+    }
+    
+  }
+  fetchProfile=async ()=>{
+      const acc = await this.state.superWeb3.eth.getAccounts();
+    console.log(this.state.superWeb3.currentProvider);
+    const box = await Box.openBox(acc[0], this.state.superWeb3.currentProvider);
+    await box.public.set("name","fuckingname");
+    let ac= await box.public.get("name");
+    console.log(ac);
+    const space = await box.getSpace(acc[0], 'spacesdemo')  
+    this.setState({box:box,space:space,account:acc[0]});
+  }
   render() {
-    return (
-      <div>
+ 
+   
+  
+ if(this.state.superWeb3!= null && this.state.superContract !=null){
+  const{space,box,account} = this.state;
+  const cbox = 
+   <EditProfile
+        // required
+        box={box}
+        space={space}
+        currentUserAddr={account}
+        // optional
+     
+   />
+;
+      return (
+        <div>
+          <Container className="main-container">
+          <Row>
+           
+          <Col sm="12" md="12">
+      <ProfileView></ProfileView>
+          </Col>
+          </Row>
+          </Container>
+        </div>
+      );
+    }
+  else{
+      if((this.state.superWeb3==null||this.state.superContract ==null)&&(this.props.web3!=null)){
+        this.state.superWeb3= this.props.web3;
+        this.state.superContract=this.props.contract;
+        //this.state.accounts=this.props.account;
+      }
+      return(<div>
         <Container className="main-container">
-        <Row>
-        <Col sm="12" md="12">
-        <TrackHistory></TrackHistory>
-        </Col>
-        </Row>
+          <Row>
+            <Col sm="12" md="12">
+              <div>
+        
+                <Card>
+                 
+                  
+                  <CardBody className="WEB3">
+                 <center>   <CardTitle>Please Connect to Web3</CardTitle>
+                    </center>
+                  </CardBody>
+                </Card>
+              </div>
+            </Col>
+          </Row>
         </Container>
       </div>
-    );
+     );
+ 
+    }
   }
 }
 
-class TrackHistory extends React.Component {
+class ProfileView extends React.Component {
   constructor(props) {
     super(props);
-    this.toggle = this.toggle.bind(this);
-    this.runExample = this.runExample.bind(this);
+   
     this.state = {
-      posts : [],
-      contract : null,
-      accounts: null,
-      web3: null,
-      profile: {},
-      kudos: [],
+      superWeb3:this.props.web3,
+      superContract:this.props.contract,
     };
   }
-
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
-  }
-
-  runExample = async () => {
-
-    // const { accounts, contract } = this.state;
-    // let count = await contract.methods.().call({ from: accounts[0] });
-    // let responses = [];
-    // for(let i=0;i<count;i++){
-    //   let response = await contract.methods.ggetPostCountetPosts(i).call({from: accounts[0]});
-    //   responses.push(response);
-    // }
-    // let profile = await contract.methods.myProfile().call({ from: accounts[0] });
-    // console.log(responses);
-    // console.log(profile);
-    // let kudos = [];
-    // let kcount = await contract.methods.tokenid().call({ from: accounts[0] });
-    // for(let k=0; k<kcount; k++){
-    //   let owner = await contract.methods.ownerOf(k).call({ from: accounts[0] });
-    //   if(owner == accounts[0]){
-    //     let tokenurli = await contract.methods.tokenURI(k).call({from:accounts[0]});
-    //     kudos.push(tokenurli);
-    //   }
-    // }
-    // console.log('Kudos is ');
-    // console.log(kudos);
-    // this.setState({posts:responses, profile:profile, kudos:kudos});
-  };
-
-  componentDidMount = async () => {
-    // const obj = await getContractInstance();
-    // this.setState({ web3:obj.web3, accounts:obj.accounts, contract: obj.contract});
-    // this.runExample();
-  };
-
+  
   render(){
-
-    const myprofile = this.state.profile;
-    console.log(myprofile);
-    const kudosList = this.state.kudos.map((item, index) =>
-
-      <Col sm="12" md="3">
-        <Card>
-        <CardHeader>{JSON.parse(item).name}</CardHeader>
-        <CardImg width="285" src={JSON.parse(item).image}/>
-        <CardBody>
-          <p>{JSON.parse(item).description}</p>
-          </CardBody>
-      </Card>
-      </Col>
-
-  )
-    const listItems = this.state.posts.map((item) =>
-
-      <Col sm="12" md="12">
-        <ListGroupItem>
-          <CardImg width="50" src="https://c.gitcoin.co/avatars/0357f94b529985a8a898ab338add0edf/djrosenbaum.png" />
-          <CardImg width="50" src={"https://ipfs.io/ipfs/" +(JSON.parse(item.content).ipfsId)} />
-          <Row>
-            <Col sm="4" md="6">
-              <p>Reviewer Name :- {item.addr}</p>
-            </Col>
-            <Col sm="4" md="6">
-              <p>Place Location :- </p>
-            </Col>
-          </Row>
-          <Row>
-            <Col sm="4" md="6">
-              <p >Subject :- {JSON.parse(item.content).subject}</p>
-            </Col>
-            <Col sm="4" md="6">
-              <Button theme="success">See More</Button>
-            </Col>
-
-          </Row>
-        </ListGroupItem>
-      </Col>
-
-  )
+  //  if(this.state.superWeb3!= null && this.state.superContract !=null){
+      if(1){
+  //     const cbox = ({ customFields, box, "space", "0x2Ee331840018465bD7Fe74aA4E442b9EA407fBBE", myProfile, redirectFn }) => (
+  //       <EditProfile
+  //            // required
+  //            box={box}
+  //            space={space}
+  //            currentUserAddr={myAddress}
+  //            // optional
+          
+  //       />
+  //  );
     return(
       <div>
         <Row>
@@ -140,8 +135,8 @@ class TrackHistory extends React.Component {
               <Card>
                 <CardHeader>Details</CardHeader>
                 <CardBody>
-                  <p>Total Tickets :- {this.state.profile.tickets}</p>
-                  <p>Total Events Attended/Attending :- {this.state.profile.events}</p>
+                  <p>Total Tickets :- {"asd"}</p>
+                  <p>Total Events Attended/Attending :- {"asd"}</p>
         
                   </CardBody>
                 </Card>
@@ -154,7 +149,7 @@ class TrackHistory extends React.Component {
         <h5>Events You have Added</h5>
         <Row>
           <ListGroup>
-        {listItems}
+            
           </ListGroup>
         </Row>
 
@@ -163,13 +158,41 @@ class TrackHistory extends React.Component {
             <h5>Your Tickets</h5>
             <Row>
 
-            {kudosList}
-
+             
             </Row>
         <Row>
 
         </Row>
       </div>
     );
+    }  else {
+      if((this.state.superWeb3==null||this.state.superContract ==null)&&(this.props.web3!=null)){
+        this.state.superWeb3= this.props.web3;
+        this.state.superContract=this.props.contract;
+        //this.state.accounts=this.props.account;
+      }
+      return(<div>
+        <Container className="main-container">
+          <Row>
+            <Col sm="12" md="12">
+              <div>
+        
+                <Card>
+                 
+                  
+                  <CardBody className="WEB3">
+                 <center>   <CardTitle>Please Connect to Web3</CardTitle>
+                    </center>
+                  </CardBody>
+                </Card>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+     );
+    
+    }
   }
+
 }

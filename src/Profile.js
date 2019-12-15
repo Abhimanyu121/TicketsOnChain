@@ -11,7 +11,6 @@ import {
   CardImg,
   ListGroup,
 } from 'shards-react';
-import EditProfile from '3box-profile-edit-react';
 export default class Profile extends React.Component {
   constructor(props){
     super(props);

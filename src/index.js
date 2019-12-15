@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
+//import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+//import AlertTemplate from 'react-alert-template-basic'
 import {
   Route,
   HashRouter
@@ -20,6 +20,7 @@ import EventList from './eventlist';
 import EditProfile from './editprofile';
 import CheckIn from './checkin';
 import Tickets from './ticketsList2';
+import Sales from './sales';
 
 const NodeCache = require( "node-cache" );
 const myCache = new NodeCache();
@@ -59,6 +60,7 @@ class Main extends React.Component {
         <Route path="/ticket-list" render = {()=><Tickets web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/edit-profile" component={EditProfile}/>
         <Route path="/check-in" component={CheckIn}/>}/>
+        <Route path="/sales" component={Sales}/>}/>
       </HashRouter> 
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
       </div>

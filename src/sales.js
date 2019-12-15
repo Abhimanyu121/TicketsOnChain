@@ -7,7 +7,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 import Web3Connect from "web3connect";
 
-export default class CheckIn extends React.Component{
+export default class Sales extends React.Component{
   
   constructor(props){
     super(props);
@@ -50,12 +50,12 @@ export default class CheckIn extends React.Component{
    }
   fetchEventData = async ()=>{
     const {superWeb3,superContract,eventId} = this.state;
-    let event = await superContract.methods.checkInList(eventId).call();
+    let event = await superContract.methods.sales(eventId).call();
     console.log(event);
     let addresses=[];
-    for(let i =0; i<event["attendees"].length;i++){
-      if(event["attendees"][i]!="0x0000000000000000000000000000000000000000")
-      addresses.push(event["attendees"][i]);
+    for(let i =0; i<event["alltickets"].length;i++){
+      if(event["alltickets"][i]!="0x0000000000000000000000000000000000000000")
+      addresses.push(event["alltickets"][i]);
     }
     let zero =false
     if(addresses.length==0){
@@ -65,51 +65,6 @@ export default class CheckIn extends React.Component{
     console.log("zero "+zero)
     this.setState({event:event,addresses:addresses,fetching :false,zero:zero });
   }
-  checkIn = async(id)=>{
-   let flag =true;
- 
-      try{
-        let provider = await Web3Connect.ConnectToWalletConnect(
-          WalletConnectProvider,
-          {
-            infuraId: "311ef590f7e5472a90edfa1316248cff", // required
-            bridge: "https://bridge.walletconnect.org" // optional
-          }
-        );
-        if(provider.wc.connected){
-         await provider.close();
-        }
-  
-        // await provider.close();
-         console.log(provider);
-         provider =  new WalletConnectProvider({
-          infuraId: "311ef590f7e5472a90edfa1316248cff"
-         });
-       
-         await provider.enable()
-         console.log("enabled");
-         console.log(provider);
-         const web3 = new Web3(provider);
-          let acc = await web3.eth.getAccounts();
-          const deployedNetwork = TickesOnChain.networks[42];
-          const instance = new web3.eth.Contract(
-            TickesOnChain.abi,
-            deployedNetwork && deployedNetwork.address,
-          );
-          console.log(acc);
-         
-          const  response = await instance.methods.checkIn(id).send({from: acc[0] });
-          console.log(response);
-          await provider.close();
-          flag =false;
-          }
-      catch(e){
-        console.error(e);
-        //flag = false;
-      }
-    
-   }
- 
   
   render(){
 
@@ -134,13 +89,12 @@ export default class CheckIn extends React.Component{
           <Row> 
             <Col sm="12" md="12">
               <div>
-                <h3>Check-In</h3><hr/> <br />
+                <h3>Sales</h3><hr/> <br />
                 <Card>
                   <CardBody>
                     <CardTitle>Event name: {this.state.event["name"]}</CardTitle>
                     <CardTitle>Number of tickets: {parseInt(this.state.event["_totalTickets"])}</CardTitle>
                     <CardTitle>Number of Check-In: {parseInt(this.state.event["totalCheckin"])}</CardTitle>
-                    <center><Button outline pill onClick={()=>{this.checkIn(this.state.eventId)}}> Check-In</Button></center>
                   </CardBody>
                 </Card>
                </div>
@@ -156,7 +110,7 @@ export default class CheckIn extends React.Component{
                  
                   
                   <CardBody className="WEB3">
-                 <center>   <CardTitle>No Check-In Yet</CardTitle>
+                 <center>   <CardTitle>No one bought tickets yet</CardTitle>
                     </center>
                   </CardBody>
                 </Card>
@@ -188,7 +142,6 @@ export default class CheckIn extends React.Component{
                         <CardTitle>Event name: {this.state.event["name"]}</CardTitle>
                         <CardTitle>Number of tickets: {parseInt(this.state.event["_totalTickets"])}</CardTitle>
                         <CardTitle>Number of Check-In: {parseInt(this.state.event["totalCheckin"])}</CardTitle>
-                      <center><Button outline pill onClick={()=>{this.checkIn(this.state.eventId)}} > Check-In</Button></center>
                       </CardBody>
                     </Card>
                 </div>
@@ -196,7 +149,7 @@ export default class CheckIn extends React.Component{
             </Row>
             <br/><br/><br/><br/>
             <Card style={{marginTop: "30px"}}>
-              <CardHeader>Check-In</CardHeader>
+              <CardHeader>Buyers</CardHeader>
                 <CardBody className="Ticket">
                 {checkInList}
               </CardBody>

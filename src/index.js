@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
-
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
 import {
   Route,
   HashRouter
@@ -68,6 +69,9 @@ class Main extends React.Component {
 
 //<Route path="/event-list" component={EventList}/>
 ReactDOM.render(
-  <Main />,
+  <AlertProvider template={AlertTemplate} >
+   <Main />,
+  </AlertProvider>,
+  
   document.getElementById('root')
 );

@@ -8,7 +8,7 @@ import Web3Connect from "web3connect";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg, Button } from "shards-react";
-export default class CreateToken extends React.Component{
+export default class ticketsList extends React.Component{
   constructor(props){
     super(props);
     this.state ={
@@ -117,14 +117,17 @@ export default class CreateToken extends React.Component{
     const accounts = await superWeb3.eth.getAccounts();
     let response = await superContract.methods.UserProfile().call({from:accounts[0]});
     console.log("asdsad");
-    console.log(response[0].length);
+    console.log(response[2].length);
     if(response==null){
       this.setState({zero:true});
     }
-    else if(response[0].length==0){
+    else if(response[2].length==0){
       this.setState({zero:true});
     }
-        for(let i =0; i<response[0].length;i++){
+
+    console.log(response);
+
+    for(let i =0; i<response[2].length;i++){
       let event = await superContract.methods.eventMapping(response[0][i]).call();
       _events.push(event);
     }
@@ -162,7 +165,7 @@ export default class CreateToken extends React.Component{
                  
                   
                   <CardBody className="WEB3">
-                 <center>   <CardTitle>You are not hosting any event</CardTitle>
+                 <center>   <CardTitle>You dont have any Tickets</CardTitle>
                     </center>
                   </CardBody>
                 </Card>
@@ -178,23 +181,7 @@ export default class CreateToken extends React.Component{
               <CardBody className="Ticket">
                 <CardTitle>{item[4]}</CardTitle>
                 <CardTitle>{item[9]}</CardTitle>
-                <Button>Withdraw Amount</Button>
-                <t/><t/>
-                <Button onClick={async ()=>{
-                  let con =true
-                  while(con){
-                    try{
-                      con =await this.checkIn(item[10])
-                    }
-                    catch(err){
-                      
-                    }
-                    
-                    console.log(con+"asdads");
-                  }
-                  }}>Start Checking in</Button>
-                <t/><t/>
-                <Button>End Event</Button>
+
               </CardBody>
             </Card>
         );
@@ -207,7 +194,7 @@ export default class CreateToken extends React.Component{
             <Row>
               <Col sm="12" md="12">
                 <div>
-                  <h3>Events you are hosting</h3><hr/> <br />
+                  <h3>Your Tickets</h3><hr/> <br />
                   {listHost}
                 </div>
               </Col>

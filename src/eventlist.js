@@ -160,185 +160,116 @@ export default class CreateToken extends React.Component{
     else if(this.state.superWeb3== null && this.state.superContract ==null){
       const disabledItems = this.state.disabledEvents.map((item , index) =>
      
-    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+<div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
   }}>
-       
-    <Card style={{maxHeight:"310px"}}>
+   <Card style={{maxHeight:"330px"}}>
     <CardHeader>Event</CardHeader>
       <script>console.log(item);</script>
         <container><Row><Col>
-     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
-      </Col>
-      <Col>
-      <CardBody style={{marginBottom: "10px"}}>
-
-        <CardTitle>{item[4]}</CardTitle>
-        <p>{item[9]}</p>
-    
-       
-       <Row>
-         <Col>
-        <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
-        <Col>
-          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
+    <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
     </Col>
-        </Row>
-        <br />
-        <Row>
-         
-      <Col>
-      
-      </Col>
-
-    </Row>
-
-
-
-      </CardBody>
-      </Col></Row></container>
-    </Card>
-    
-    </div>
-    );
-      const listItems = this.state.eventList.map((item , index) =>
-     
-    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
-  }}>
-       
-    <Card style={{maxHeight:"310px"}}>
-    <CardHeader>Event</CardHeader>
-      <script>console.log(item);</script>
-        <container><Row><Col>
-     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
-      </Col>
-      <Col>
-      <CardBody style={{marginBottom: "10px"}}>
-
-        <CardTitle>{item[4]}</CardTitle>
-        <p>{item[9]}</p>
-    
-       
-       <Row>
-       <Col>
-        <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
-        <Col>
-          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
-    </Col>
-        </Row>
-        <br />
-        <Row>
-         
-      <Col>
-      <CardTitle>You need to connect to web3 to buy tickets</CardTitle>
-      </Col>
-
-    </Row>
-
-
-
-      </CardBody>
-      </Col></Row></container>
-    </Card>
-    
-    </div>
-    );
-    return(
-      <div>
     <Col>
-      <Row style={{marginBottom:"60px"}}>
-      <h3 style={{marginLeft:"60px" , marginTop:"60ox"}}>Active Events</h3>
-      <ListGroup>
-        
-    {listItems}
-      </ListGroup>
-    </Row>
-    <Row>
-      <h3 style={{marginLeft:"60px", marginTop:"60ox"}}>Disabled Events</h3>
-      <ListGroup>
-        
-    {disabledItems}
-      </ListGroup>
-    </Row>
-    
-    </Col>
-    </div>
-    
+    <CardBody style={{marginBottom: "10px"}}>
+    <CardTitle>{item[4]}</CardTitle>
+    <p>{item[9]}</p>
+    <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6>
+    <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
+    </CardBody>
+    </Col></Row></container>
+   </Card>
+</div>
     );
+      
+    
+
+const listItems = this.state.eventList.map((item , index) =>
+<div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+  }}>
+  <Card style={{maxHeight:"350px"}}>
+  <CardHeader>Event</CardHeader>
+  <script>console.log(item);</script>
+  <container><Row><Col>
+  <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
+  </Col>
+  <Col>
+  <CardBody style={{marginBottom: "10px"}}>
+  <CardTitle>{item[4]}</CardTitle>
+  <p>{item[9]}</p>
+  <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6>
+  <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
+  <Row>
+  <Col>
+  <CardTitle>You need to connect to web3 to buy tickets</CardTitle>
+  </Col>
+  </Row>
+  </CardBody>
+  </Col></Row></container>
+  </Card>
+</div>
+    );
+    
+return(
+    <div>
+    <br />
+    <center><h3>Active Events</h3></center> 
+    <ListGroup>
+      {listItems}
+    </ListGroup>
+   <br />
+   <br />
+    <center><h3>Disabled Events</h3></center> 
+    <ListGroup>
+     {disabledItems}
+    </ListGroup>
+   
+    </div>
+  );
     }
     else {
-      const disabledItems = this.state.disabledEvents.map((item , index) =>
-     
-    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+    const disabledItems = this.state.disabledEvents.map((item , index) =>
+  <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
   }}>
-       
-    <Card style={{maxHeight:"310px"}}>
-    <CardHeader>Event</CardHeader>
-      <script>console.log(item);</script>
-        <container><Row><Col>
-     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
-      </Col>
-      <Col>
-      <CardBody style={{marginBottom: "10px"}}>
-
-        <CardTitle>{item[4]}</CardTitle>
-        <p>{item[9]}</p>
+  <Card style={{maxHeight:"310px"}}>
+  <CardHeader>Event</CardHeader>
+  <script>console.log(item);</script>
+  <container><Row><Col>
+  <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
+  </Col>
+  <Col>
+  <CardBody style={{marginBottom: "10px"}}>
+  <CardTitle>{item[4]}</CardTitle>
+  <p>{item[9]}</p>
+  <Row>
+  <Col>
+  <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
+  <Col>
+  <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
+  </Col>
+  </Row>
+  </CardBody>
+  </Col></Row></container>
+  </Card>
+  </div>
+  );
     
-       
-       <Row>
-       <Col>
-        <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
-        <Col>
-          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
-    </Col>
-        </Row>
-        <br />
-        <Row>
-         
-      <Col>
-      
-      </Col>
-
-    </Row>
-
-
-
-      </CardBody>
-      </Col></Row></container>
-    </Card>
-    
-    </div>
-    );
-      const listItems = this.state.eventList.map((item , index) =>
-     
-    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+  const listItems = this.state.eventList.map((item , index) =>
+  <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
   }}>
-       
-    <Card style={{maxHeight:"310px"}}>
-    <CardHeader>Event</CardHeader>
-      <script>console.log(item);</script>
-        <container><Row><Col>
-     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
-      </Col>
-      <Col>
-      <CardBody style={{marginBottom: "10px"}}>
-
-        <CardTitle>{item[4]}</CardTitle>
-        <p>{item[9]}</p>
-    
-       
-       <Row>
-       <Col>
-        <h6> {"Price(in ETH):  "+ this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
-        <Col>
-          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
-    </Col>
-        </Row>
-        <br />
-        <Row>
-         
-    
-    <Col>
-    <Button outline pill value="yes"  onMouseUp={()=>{
+  <Card style={{maxHeight:"310px"}}>
+  <CardHeader>Event</CardHeader>
+  <script>console.log(item);</script>
+  <container><Row><Col>
+  <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
+  </Col>
+  <Col>
+  <CardBody style={{marginBottom: "10px"}}>
+  <CardTitle>{item[4]}</CardTitle>
+  <p>{item[9]}</p>
+  <h6> {"Price(in ETH):  "+ this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6>
+  <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
+  <Row>
+  <Col>
+  <Button outline pill value="yes"  onMouseUp={()=>{
       if((this.state.superWeb3==null||this.state.superContract ==null)&&(this.props.web3==null)){
         //const alert = useAlert()
         //alert.show("Please connect to web3");
@@ -347,10 +278,9 @@ export default class CreateToken extends React.Component{
       }
       else if(this.state.superWeb3!=null||this.state.superContract !=null){
         this.buyWithEth(item[0],item[10])}
-      }
-      
-      }> Buy With ETH</Button>    </Col>
-    <Col>
+      }}> Buy With ETH</Button>   
+  </Col>
+  <Col>
     <Button outline pill onMouseUp = {()=>{
       if((this.state.superWeb3==null||this.state.superContract ==null)&&(this.props.web3==null)){
         //const alert = useAlert()
@@ -360,43 +290,26 @@ export default class CreateToken extends React.Component{
       }
       else if(this.state.superWeb3!=null||this.state.superContract !=null){
         this.buyWithDai(item[10])}
-      }
-      
-      }> Buy With DAI</Button>
-
-     
-        
-        </Col>
-    </Row>
-
-
-
-      </CardBody>
-      </Col></Row></container>
-    </Card>
+      }}> Buy With DAI</Button>
+ </Col>
+ </Row>
+   </CardBody>
+   </Col></Row></container>
+   </Card>
+   </div>
+  );
     
-    </div>
-    );
-      return(
-        <div>
-      <Col>
-        <Row style={{marginBottom:"60px"}}>
-        <h3 style={{marginLeft:"60px" , marginTop:"60ox"}}>Active Events</h3>
-        <ListGroup>
-          
-      {listItems}
-        </ListGroup>
-      </Row>
-      <Row>
-        <h3 style={{marginLeft:"60px", marginTop:"60ox"}}>Disabled Events</h3>
-        <ListGroup>
-          
-      {disabledItems}
-        </ListGroup>
-      </Row>
-      
-      </Col>
-      </div>
+  return(
+   <div>
+  
+    <br />
+    <center><h3>Active Events</h3></center>
+    <ListGroup>{listItems}</ListGroup>
+    <br />
+    <br />
+    <center><h3>Disabled Events</h3></center>
+    <ListGroup>{disabledItems} </ListGroup>
+   </div>
       
       );
     }

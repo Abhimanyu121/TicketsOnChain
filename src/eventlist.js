@@ -158,60 +158,6 @@ export default class CreateToken extends React.Component{
      /></h6></center>);
     }
     else if(this.state.superWeb3== null && this.state.superContract ==null){
-      const listItems = this.state.eventList.map((item , index) =>
-     
-    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
-  }}>
-       
-    <Card style={{maxHeight:"310px"}}>
-    <CardHeader>Event</CardHeader>
-      <script>console.log(item);</script>
-        <container><Row><Col>
-     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
-      </Col>
-      <Col>
-      <CardBody style={{marginBottom: "10px"}}>
-
-        <CardTitle>{item[4]}</CardTitle>
-        <p>{item[9]}</p>
-    
-       
-       <Row>
-         <Col>
-        <h6> {"Price(in ETH):  "+item[0]+" ETH"}</h6></Col>
-        <Col>
-          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
-    </Col>
-        </Row>
-        <br />
-        <Row>
-         
-      <Col>
-      <CardTitle>You need to connect to web3 to buy tickets</CardTitle>
-      </Col>
-
-    </Row>
-
-
-
-      </CardBody>
-      </Col></Row></container>
-    </Card>
-    
-    </div>
-    );
-      return(
-      <Col>
-        <Row>
-
-        <ListGroup>
-      {listItems}
-        </ListGroup>
-      </Row>
-      </Col>
-      );
-    }
-    else {
       const disabledItems = this.state.disabledEvents.map((item , index) =>
      
     <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
@@ -232,9 +178,9 @@ export default class CreateToken extends React.Component{
        
        <Row>
          <Col>
-        <h6> {"Price(in ETH):  "+item[0]+" ETH"}</h6></Col>
+        <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
         <Col>
-          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
+          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
     </Col>
         </Row>
         <br />
@@ -273,10 +219,118 @@ export default class CreateToken extends React.Component{
     
        
        <Row>
-         <Col>
-        <h6> {"Price(in ETH):  "+item[0]+" ETH"}</h6></Col>
+       <Col>
+        <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
         <Col>
-          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
+          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
+    </Col>
+        </Row>
+        <br />
+        <Row>
+         
+      <Col>
+      <CardTitle>You need to connect to web3 to buy tickets</CardTitle>
+      </Col>
+
+    </Row>
+
+
+
+      </CardBody>
+      </Col></Row></container>
+    </Card>
+    
+    </div>
+    );
+    return(
+      <div>
+    <Col>
+      <Row style={{marginBottom:"60px"}}>
+      <h3 style={{marginLeft:"60px" , marginTop:"60ox"}}>Active Events</h3>
+      <ListGroup>
+        
+    {listItems}
+      </ListGroup>
+    </Row>
+    <Row>
+      <h3 style={{marginLeft:"60px", marginTop:"60ox"}}>Disabled Events</h3>
+      <ListGroup>
+        
+    {disabledItems}
+      </ListGroup>
+    </Row>
+    
+    </Col>
+    </div>
+    
+    );
+    }
+    else {
+      const disabledItems = this.state.disabledEvents.map((item , index) =>
+     
+    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+  }}>
+       
+    <Card style={{maxHeight:"310px"}}>
+    <CardHeader>Event</CardHeader>
+      <script>console.log(item);</script>
+        <container><Row><Col>
+     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
+      </Col>
+      <Col>
+      <CardBody style={{marginBottom: "10px"}}>
+
+        <CardTitle>{item[4]}</CardTitle>
+        <p>{item[9]}</p>
+    
+       
+       <Row>
+       <Col>
+        <h6> {"Price(in ETH):  "+this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
+        <Col>
+          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
+    </Col>
+        </Row>
+        <br />
+        <Row>
+         
+      <Col>
+      
+      </Col>
+
+    </Row>
+
+
+
+      </CardBody>
+      </Col></Row></container>
+    </Card>
+    
+    </div>
+    );
+      const listItems = this.state.eventList.map((item , index) =>
+     
+    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+  }}>
+       
+    <Card style={{maxHeight:"310px"}}>
+    <CardHeader>Event</CardHeader>
+      <script>console.log(item);</script>
+        <container><Row><Col>
+     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
+      </Col>
+      <Col>
+      <CardBody style={{marginBottom: "10px"}}>
+
+        <CardTitle>{item[4]}</CardTitle>
+        <p>{item[9]}</p>
+    
+       
+       <Row>
+       <Col>
+        <h6> {"Price(in ETH):  "+ this.state.web3.utils.fromWei(item[0].toString())+" ETH"}</h6></Col>
+        <Col>
+          <h6> {"Price(in Dai):  "+this.state.web3.utils.fromWei(item[1].toString())+" DAI"}</h6>
     </Col>
         </Row>
         <br />
@@ -325,29 +379,23 @@ export default class CreateToken extends React.Component{
     );
       return(
         <div>
-        <Container style={{marginTop:"10px", marginBottom:"10px"}}>
-          <Col>
-          <Row>
-            <Col >
-              <div>
-                <h3>Active Events</h3><hr/> <br />
-                {listItems}
-              </div>
-            </Col>
-          </Row>
-          <Row style={{marginTop:"10px", marginBottom:"10px"}}>
-            <Col >
-              <div>
-                <h3>Disabled Events</h3><hr/> <br />
-                {disabledItems}
-              </div>
-            </Col>
-          </Row>
-          </Col>
-        </Container>
-        <Container >
+      <Col>
+        <Row style={{marginBottom:"60px"}}>
+        <h3 style={{marginLeft:"60px" , marginTop:"60ox"}}>Active Events</h3>
+        <ListGroup>
           
-        </Container>
+      {listItems}
+        </ListGroup>
+      </Row>
+      <Row>
+        <h3 style={{marginLeft:"60px", marginTop:"60ox"}}>Disabled Events</h3>
+        <ListGroup>
+          
+      {disabledItems}
+        </ListGroup>
+      </Row>
+      
+      </Col>
       </div>
       
       );

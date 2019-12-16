@@ -82,9 +82,12 @@ export default class CreateReview extends React.Component{
                 "name": this.state.name,
               }
             );
+            let _eth = superWeb3.utils.toWei(eth);
+            let _dai = superWeb3.utils.toWei(dai)
+              console.log(_eth);
             const accounts = await superWeb3.eth.getAccounts();
             let desc = description +"\n\tDate: "+date+"\n\tPlace: "+place;
-            await superContract.methods.createEvent(eth,dai,content,name,desc,seats).send({ from: accounts[0] });
+            await superContract.methods.createEvent(_eth,_dai,content,name,desc,seats).send({ from: accounts[0] });
             
         })();
         

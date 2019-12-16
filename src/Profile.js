@@ -1,6 +1,7 @@
 import React from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {
   Row,
   Col,
@@ -10,6 +11,7 @@ import {
   CardTitle,
   CardHeader,
   CardImg,
+  Button,
   ListGroup,
 } from 'shards-react';
 
@@ -68,7 +70,7 @@ export default class Profile extends React.Component {
    
   
  if(this.state.superWeb3!= null && this.state.superContract !=null){
-   if(this.state.loadState >=2){
+   if(this.state.loadState >=2&&this.state.contractProfile!=null){
     return (
         
       <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
@@ -81,7 +83,13 @@ export default class Profile extends React.Component {
         <Col sm="12" md="3">
             <CardImg width="200" src="https://c.gitcoin.co/avatars/0357f94b529985a8a898ab338add0edf/djrosenbaum.png" /> <br /> <br/>
     <h3><b>{this.state.boxProfile.name}</b></h3>
-            <h5><b><a href="/#/edit-profile" style={{color: "white"}}>Edit Profile</a></b></h5>
+            <h5><b><Link to = {{
+                  pathname: '/edit-profile',
+                  aboutProps:{
+                    superContract: this.state.superContract,
+                    superWeb3: this.state.superWeb3
+                  }
+                }}><Button  pill>Edit Profile</Button></Link></b></h5>
         </Col>
         <Col sm="12" md="9">
           <div>
@@ -100,24 +108,7 @@ export default class Profile extends React.Component {
       </Row>
       <br />
       <br />
-    <hr />
-      <h5>Events You have Added</h5>
-      <Row>
-        <ListGroup>
-          
-        </ListGroup>
-      </Row>
-
-      <br />
-        <hr />
-          <h5>Your Tickets</h5>
-          <Row>
-
-           
-          </Row>
-      <Row>
-
-      </Row>
+    
     </div>
         </Col>
         </Row>

@@ -58,7 +58,7 @@ class Main extends React.Component {
         <Route path="/event-list" render = {()=><EventList web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/profile" render = {()=><Profile web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/ticket-list" render = {()=><Tickets web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
-        <Route path="/edit-profile" component={EditProfile}/>
+        <Route path="/edit-profile" render = {()=><EditProfile web3 ={this.state.superWeb3} account={this.state.superAccount} contract = {this.state.superContract} setSuperWeb3 = {this.callbackFunction} setSuperContract={this.setSuperContract}/>}/>
         <Route path="/check-in" component={CheckIn}/>}/>
         <Route path="/sales" component={Sales}/>}/>
       </HashRouter> 

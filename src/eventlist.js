@@ -30,8 +30,8 @@ export default class CreateToken extends React.Component{
     this.toggle = this.toggle.bind(this);
     this.runExample = this.fetchEvent.bind(this);
     this.state = {
-      contract : null,
-      web3: null,
+      contract : this.props.contract,
+      web3: this.props.web3,
       eventList :[],
       disabledEvents:[],
       superWeb3: this.props.web3,

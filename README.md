@@ -28,6 +28,9 @@ This project is Ehtereum based event hosting platform, it utilizes WalletConnect
 4. If something goes wrong please ping me on telegram, my user name is `abhimanyu121`.
 5. This was our first Dapp and website, thus it might have some rough edges here and there.
 6. This Dapp is hosted [here](goofy-beaver-e7c5b4.netlify.com)
+## Running Development server
+1. Install all the dependencies with `npm install`.
+2. Run Development server with `npm start`.
 ## Some Screenshots
 |<img src="Screenshots/4.png" width="400">|<img src="Screenshots/9.png" width="400">
 |<img src="Screenshots/6.png" width="400">|<img src="Screenshots/8.png" width="400">

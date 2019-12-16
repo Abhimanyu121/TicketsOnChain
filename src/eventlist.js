@@ -33,6 +33,7 @@ export default class CreateToken extends React.Component{
       contract : null,
       web3: null,
       eventList :[],
+      disabledEvents:[],
       superWeb3: this.props.web3,
       superContract:this.props.contract,
       superAccount: this.props.account,
@@ -46,7 +47,7 @@ export default class CreateToken extends React.Component{
     this.setState({ collapse: !this.state.collapse });
   }
   fetchEvent = async ()  => {
-
+    let disabled=[];
     let responses = [];
     const {contract,superContract } = this.state;
     if(superContract != null && superContract!==undefined){
@@ -57,8 +58,12 @@ export default class CreateToken extends React.Component{
       for(let i=0;i<count;i++){
         let response = await superContract.methods.eventMapping(i).call();
         //console.log(JSON.parse(response[3]).image);
-        console.log(response);
-        responses.push(response);
+        if(response[5]){
+          console.log(response);
+          responses.push(response);
+        }else{
+          disabled.push(response);
+        }
       }
     }
     else{
@@ -68,13 +73,18 @@ export default class CreateToken extends React.Component{
     for(let i=0;i<count;i++){
       let response = await contract.methods.eventMapping(i).call();
       //console.log(JSON.parse(response[3]).image);
-      console.log(response);
-      responses.push(response);
+      if(response[5]){
+        console.log(response);
+        responses.push(response);
+      }else{
+        disabled.push(response);
+      }
+      
     }
     }
     
 
-    this.setState({eventList:responses});
+    this.setState({eventList:responses,disabledEvents:disabled});
   }
    
   componentDidMount = async () => {
@@ -112,8 +122,6 @@ export default class CreateToken extends React.Component{
     if(this.state.superWeb3!= null){
       console.log("web3 available");
      const superAccount = await web3.eth.getAccounts();
-  // console.log(superAccount[0]);
-      //console.log(this.state.superWeb3.utils.toChecksumAddress(this.state.superAccount[0]));
        let response = await contract.methods.buyTicketsEth(id).send({from: superAccount[0], value: _value})
        alert("Done\n"+response);
     }
@@ -133,15 +141,12 @@ export default class CreateToken extends React.Component{
   
   }
   render(){
-    let popup = <div>Transction in process</div>
-    const conRequest = <p>Please Connect your web3 Wallet</p>
-    let toShow = null;
-    if(this.state.superWeb3===undefined){
-     toShow = conRequest;
+    if(this.state.superWeb3==null||this.state.superContract ==null){
+      this.state.superWeb3= this.props.web3;
+      this.state.superContract=this.props.contract;
+      this.state.accounts=this.props.account;
     }
-    else {
-      toShow = popup;
-    }
+    
     if(this.state.eventList.length==0){
       return(<center> <h6> Loading..: <Loader
         type="Puff"
@@ -152,7 +157,103 @@ export default class CreateToken extends React.Component{
 
      /></h6></center>);
     }
+    else if(this.state.superWeb3== null && this.state.superContract ==null){
+      const listItems = this.state.eventList.map((item , index) =>
+     
+    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+  }}>
+       
+    <Card style={{maxHeight:"310px"}}>
+    <CardHeader>Event</CardHeader>
+      <script>console.log(item);</script>
+        <container><Row><Col>
+     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
+      </Col>
+      <Col>
+      <CardBody style={{marginBottom: "10px"}}>
+
+        <CardTitle>{item[4]}</CardTitle>
+        <p>{item[9]}</p>
+    
+       
+       <Row>
+         <Col>
+        <h6> {"Price(in ETH):  "+item[0]+" ETH"}</h6></Col>
+        <Col>
+          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
+    </Col>
+        </Row>
+        <br />
+        <Row>
+         
+      <Col>
+      <CardTitle>You need to connect to web3 to buy tickets</CardTitle>
+      </Col>
+
+    </Row>
+
+
+
+      </CardBody>
+      </Col></Row></container>
+    </Card>
+    
+    </div>
+    );
+      return(
+      <Col>
+        <Row>
+
+        <ListGroup>
+      {listItems}
+        </ListGroup>
+      </Row>
+      </Col>
+      );
+    }
     else {
+      const disabledItems = this.state.disabledEvents.map((item , index) =>
+     
+    <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
+  }}>
+       
+    <Card style={{maxHeight:"310px"}}>
+    <CardHeader>Event</CardHeader>
+      <script>console.log(item);</script>
+        <container><Row><Col>
+     <CardImg src={JSON.parse(item[3]).image} style = {{maxHeight:"230px",marginLeft:"20%"}}/>
+      </Col>
+      <Col>
+      <CardBody style={{marginBottom: "10px"}}>
+
+        <CardTitle>{item[4]}</CardTitle>
+        <p>{item[9]}</p>
+    
+       
+       <Row>
+         <Col>
+        <h6> {"Price(in ETH):  "+item[0]+" ETH"}</h6></Col>
+        <Col>
+          <h6> {"Price(in Dai):  "+item[1]+" DAI"}</h6>
+    </Col>
+        </Row>
+        <br />
+        <Row>
+         
+      <Col>
+      
+      </Col>
+
+    </Row>
+
+
+
+      </CardBody>
+      </Col></Row></container>
+    </Card>
+    
+    </div>
+    );
       const listItems = this.state.eventList.map((item , index) =>
      
     <div style={{paddingLeft: "16%",paddingRight:"16%", paddingTop: "3%", fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"
@@ -223,14 +324,32 @@ export default class CreateToken extends React.Component{
     </div>
     );
       return(
-      <Col>
-        <Row>
-
-        <ListGroup>
-      {listItems}
-        </ListGroup>
-      </Row>
-      </Col>
+        <div>
+        <Container style={{marginTop:"10px", marginBottom:"10px"}}>
+          <Col>
+          <Row>
+            <Col >
+              <div>
+                <h3>Active Events</h3><hr/> <br />
+                {listItems}
+              </div>
+            </Col>
+          </Row>
+          <Row style={{marginTop:"10px", marginBottom:"10px"}}>
+            <Col >
+              <div>
+                <h3>Disabled Events</h3><hr/> <br />
+                {disabledItems}
+              </div>
+            </Col>
+          </Row>
+          </Col>
+        </Container>
+        <Container >
+          
+        </Container>
+      </div>
+      
       );
     }
 

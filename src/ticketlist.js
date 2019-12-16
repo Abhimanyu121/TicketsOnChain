@@ -57,7 +57,28 @@ export default class CreateToken extends React.Component{
       return true;
     
   }
-  
+  withdrawAmount= async (id)=>{
+    const {superContract,superWeb3} = this.state;
+    console.log(id);
+    console.log("web3 not  available");
+    if(this.state.superWeb3!= null){
+      console.log("web3 available");
+     const superAccount = await superWeb3.eth.getAccounts();
+       let response = await superContract.methods.withdraw(id).send({from: superAccount[0], })
+       alert("Done\n"+response);
+    }
+  }
+  disableEvent= async (id)=>{
+    const {superContract,superWeb3} = this.state;
+    console.log(id);
+    console.log("web3 not  available");
+    if(this.state.superWeb3!= null){
+      console.log("web3 available");
+     const superAccount = await superWeb3.eth.getAccounts();
+       let response = await superContract.methods.turnEventOff(id).send({from: superAccount[0], })
+       alert("Done\n"+response);
+    }
+  }
   fetchHostedNetwork = async ()=>{
    
     const {superWeb3,superContract} = this.state;
@@ -148,12 +169,12 @@ export default class CreateToken extends React.Component{
                     superWeb3: this.state.superWeb3
                   }
                 }}>
-                <Button outline pill >Ticket Sales</Button>
+                <Button outline pill  >Ticket Sales</Button>
                 </Link>
                 <t/><t/>
-                <Button outline pill>Withdraw Amount</Button>
+                <Button outline pill onMouseUp={()=>{this.withdrawAmount(item[10])}}>Withdraw Amount</Button>
                 <t/><t/>
-                <Button outline pill>End Event</Button>
+                <Button outline pill onMouseUp={()=>{this.disableEvent(item[10])}}>End Event</Button>
               </CardBody>
             </Card>
         );

@@ -117,7 +117,7 @@ export default class ticketsList extends React.Component{
     const accounts = await superWeb3.eth.getAccounts();
     let response = await superContract.methods.UserProfile().call({from:accounts[0]});
     console.log("asdsad");
-    console.log(response[1].length);
+    console.log(response[2].length);
     if(response==null){
       this.setState({zero:true});
     }

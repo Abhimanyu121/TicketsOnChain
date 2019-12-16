@@ -57,58 +57,28 @@ export default class CreateToken extends React.Component{
       return true;
     
   }
-  
-  
-  // checkIn = async (id) => {
-  //   const sleep = (milliseconds) => {
-  //     return new Promise(resolve => setTimeout(resolve, milliseconds))
-  //   }
-  //   const {superContract,superWeb3,walletConnector} = this.state;
- 
-  //   console.log("wallet");
-  //   console.log(walletConnector);
-  //   walletConnector.killSession();
-  //   await sleep(500);
-  //   walletConnector.createSession().then(async () => {
-  //       // get uri for QR Code modal
-  //       const uri = walletConnector.uri;
-  //       // display QR Code modal
-  //       WalletConnectQRCodeModal.open(uri, async () => {
-  //         console.log("QR Code Modal closed");
-  //       });
-  //   });
-    
-  //    walletConnector.on("connect", async (error, payload) => {
-  //     if (error) {
-  //       //throw error;
-  //     }
-    
-  //     // Close QR Code Modal
-  //     WalletConnectQRCodeModal.close();
-    
-  //     // Get provided accounts and chainId
-  //     const { accounts, chainId } = payload.params[0];
-  //    let encoded = superContract.methods.checkIn(id).encodeABI();
-  //    console.log(encoded);
-  //     let tx = {
-  //       from: accounts[0], // Required
-  //       to: TickesOnChain.networks[42].address, // Required (for non contract deployments)
-  //       data: encoded
-  //     }
-  //      walletConnector
-  //     .sendTransaction(tx)
-  //     .then(result => {
-  //       // Returns transaction id (hash)
-  //       console.log(result);
-  //     })
-  //     .catch(error => {
-  //       // Error returned when rejected
-  //       console.error(error);
-  //     });
-  //   });
-    
-  // }    
-  
+  withdrawAmount= async (id)=>{
+    const {superContract,superWeb3} = this.state;
+    console.log(id);
+    console.log("web3 not  available");
+    if(this.state.superWeb3!= null){
+      console.log("web3 available");
+     const superAccount = await superWeb3.eth.getAccounts();
+       let response = await superContract.methods.withdraw(id).send({from: superAccount[0], })
+       alert("Done\n"+response);
+    }
+  }
+  disableEvent= async (id)=>{
+    const {superContract,superWeb3} = this.state;
+    console.log(id);
+    console.log("web3 not  available");
+    if(this.state.superWeb3!= null){
+      console.log("web3 available");
+     const superAccount = await superWeb3.eth.getAccounts();
+       let response = await superContract.methods.turnEventOff(id).send({from: superAccount[0], })
+       alert("Done\n"+response);
+    }
+  }
   fetchHostedNetwork = async ()=>{
    
     const {superWeb3,superContract} = this.state;
@@ -154,7 +124,7 @@ export default class CreateToken extends React.Component{
        /></h6></center>;
         }
         else if(this.state.zero){
-          listHost =  <Container className="main-container" style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
+          listHost =  <Container className="main-container">
           <Row>
             <Col sm="12" md="12">
               <div>
@@ -191,9 +161,20 @@ export default class CreateToken extends React.Component{
                 <Button outline pill >Start Checking In</Button>
                 </Link>
                 <t/><t/>
-                <Button outline pill>Withdraw Amount</Button>
+                <Link to = {{
+                  pathname: '/sales',
+                  aboutProps:{
+                    id: item[10],
+                    superContract: this.state.superContract,
+                    superWeb3: this.state.superWeb3
+                  }
+                }}>
+                <Button outline pill  >Ticket Sales</Button>
+                </Link>
                 <t/><t/>
-                <Button outline pill>End Event</Button>
+                <Button outline pill onMouseUp={()=>{this.withdrawAmount(item[10])}}>Withdraw Amount</Button>
+                <t/><t/>
+                <Button outline pill onMouseUp={()=>{this.disableEvent(item[10])}}>End Event</Button>
               </CardBody>
             </Card>
         );

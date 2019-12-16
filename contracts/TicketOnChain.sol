@@ -125,6 +125,13 @@ contract TicketsOnChain is ERC721MetadataMintable {
     nftId++;
     tokenId = nftId;
   }
+  function sales(uint _id) public view returns(address[] memory attendees, uint _totalTickets, string memory name , uint totalCheckin, address[] memory alltickets){
+      attendees = eventMapping[_id].checkedInUsers;
+      _totalTickets= eventMapping[_id].ticketsIssued;
+      name = eventMapping[_id].name;
+      totalCheckin = eventMapping[_id].checkInCount;
+      alltickets = eventMapping[_id].issuedAddresses;
+  }
  function checkIn(uint eventId)public returns(bool status){
    //  require(eventMapping[eventId].ownerAddress==msg.sender,"You are not authorized to do this");
      require(userMapping[msg.sender].notCheckedIn[eventId] == true,"You have already checked in");

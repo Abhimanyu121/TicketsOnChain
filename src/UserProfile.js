@@ -27,6 +27,8 @@ export default class Profile extends React.Component {
       space:null,
       box:null,
       contractProfile:null,
+      tickets:[],
+      hostings:[],
       boxProfile:{},
       load:false
     }
@@ -44,12 +46,21 @@ export default class Profile extends React.Component {
 
   fetchContract=async()=>{
     const{account,superContract} = this.state;
+   let  _host=[];
+   let  _tickets=[];
     //const accounts = await superWeb3.eth.getAccounts();
     let response = await superContract.methods.UserProfile().call({from:account});
     console.log(this.state.superWeb3)
     let  spaceList = await Box.getSpace(this.state.account,"ToC");
     //const box = await Box.openBox(acc[0], this.state.superWeb3.currentProvider)
-    
+    for(let i =0; i<response[0].length;i++){
+      let host = await superContract.methods.eventMapping(response[0][i]).call();
+      _host.push(host);
+    }
+    for(let i =0; i<response[1].length;i++){
+      let ticket = await superContract.methods.eventMapping(response[1][i]).call();
+      _tickets.push(ticket);
+    }
     
     console.log(spaceList);
     if(this.isEmpty(spaceList)){
@@ -61,7 +72,7 @@ export default class Profile extends React.Component {
       }
     }
     console.log(this.state.account);
-    this.setState({boxProfile:spaceList,contractProfile:response,load:true})
+    this.setState({boxProfile:spaceList,contractProfile:response,load:true,tickets:_tickets,hostings:_host})
   }
   fetchProfile=async ()=>{
     //const acc = await this.state.superWeb3.eth.getAccounts();
@@ -88,7 +99,35 @@ export default class Profile extends React.Component {
   
  if(this.state.superWeb3!= null && this.state.superContract !=null){
    if(this.state.load){
+   
+      let   listHost = this.state.hostings.map((item, index)=>
+      <div>
+              <Card style={{marginTop: "30px"}}>
+              <CardHeader>Event</CardHeader>
+              <CardBody className="Ticket">
+                <CardTitle>{item[4]}</CardTitle>
+                <CardTitle>{item[9]}</CardTitle>
+
+              </CardBody>
+            </Card>
+            
+             </div>
+        );
+        let listTickets = this.state.tickets.map((item, index)=>
+        <div>
+              <Card style={{marginTop: "30px"}}>
+              <CardHeader>Event</CardHeader>
+              <CardBody className="Ticket">
+                <CardTitle>{item[4]}</CardTitle>
+                <CardTitle>{item[9]}</CardTitle>
+
+              </CardBody>
+            </Card>
+           
+            </div>
+        );
     return (
+      
         
       <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
         <Container className="main-container">
@@ -128,7 +167,24 @@ export default class Profile extends React.Component {
       </Row>
       <br />
       <br />
-    
+      <Col>
+      <h5>Events Hosted</h5>
+        <Row>
+          <ListGroup>
+        {listHost}
+          </ListGroup>
+        </Row>
+
+        <br />
+          <hr />
+            <h5>Tickets Owned</h5>
+            <Row>
+                <ListGroup>
+            {listTickets}
+            </ListGroup>
+            </Row>
+        <Row></Row>
+        </Col>
     </div>
         </Col>
         </Row>

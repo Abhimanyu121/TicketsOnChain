@@ -74,9 +74,9 @@ export default class Profile extends React.Component {
     if(this.isEmpty(spaceList)){
       console.log("flying")
       spaceList={
-        name:"You need to set Profile",
-        phone :"You need to set profile",
-        email : "You need to se Profile"
+        name:"User did not set this",
+        phone :"User did not set this",
+        email : "User did not set this"
       }
     }
     console.log(this.state.account);

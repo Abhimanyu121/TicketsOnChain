@@ -1,6 +1,8 @@
 import React from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import TickesOnChain from "./contracts/TicketsOnChain.json";
 import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg, Button } from "shards-react";
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -182,7 +184,19 @@ export default class CheckIn extends React.Component{
     else{
       let checkInList = this.state.addresses.map((item, index)=>
      
-      <CardTitle>{item}</CardTitle>);
+      <CardTitle>{item}<t/><t/>
+      <Link to = {{
+                pathname: '/UserProfile',
+                aboutProps:{
+                  account: item,
+                  path: '/check-in',
+                  id : this.state.eventId,
+                  superContract: this.state.superContract,
+                  superWeb3: this.state.superWeb3
+                }
+              }}>
+      <Button outline pill>View Profile</Button>
+      </Link></CardTitle>);
       return (
         <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
           <Container className="main-container">

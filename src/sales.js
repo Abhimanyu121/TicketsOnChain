@@ -1,6 +1,7 @@
 import React from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import TickesOnChain from "./contracts/TicketsOnChain.json";
 import { Container,Row,Col, Card,CardHeader,CardTitle,CardBody,CardImg, Button } from "shards-react";
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -128,7 +129,20 @@ export default class Sales extends React.Component{
     else{
       let checkInList = this.state.addresses.map((item, index)=>
      
-      <CardTitle>{item}</CardTitle>);
+      <CardTitle>{item}<t/><t/>
+        <Link to = {{
+                  pathname: '/UserProfile',
+                  aboutProps:{
+                    account: item,
+                    path: '/sales',
+                    id : this.state.eventId,
+                    superContract: this.state.superContract,
+                    superWeb3: this.state.superWeb3
+                  }
+                }}>
+        <Button outline pill>View Profile</Button>
+        </Link>
+      </CardTitle>);
       return (
         <div style={{fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"}}>
           <Container className="main-container">
@@ -136,7 +150,7 @@ export default class Sales extends React.Component{
               <Row>
                 <Col sm="12" md="12">
                   <div>
-                    <h3>Check-In</h3><hr/> <br />
+                    <h3>Ticket Owners</h3><hr/> <br />
                     <Card>
                       <CardBody>
                         <CardTitle>Event name: {this.state.event["name"]}</CardTitle>

@@ -71,7 +71,7 @@ export default class CheckIn extends React.Component{
   }
   checkIn = async(id)=>{
    let flag =true;
-    while(flag){
+    
       try{
         let  provider = await Web3Connect.ConnectToInjected();
         console.log("injected");
@@ -115,7 +115,7 @@ export default class CheckIn extends React.Component{
         console.error(e);
         flag = false;
       }
-    }
+    
    }
  
   

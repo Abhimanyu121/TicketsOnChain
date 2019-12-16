@@ -13,21 +13,21 @@ This project is Ehtereum based event hosting platform, it utilizes WalletConnect
 6. Event host can also disable an event to stop more ticket purchases.
 7. Users can view tickets held by them(tickets are NFTs).
 8. Users have choice whether to add information to their profile or not.
-9. This DApp supports three methods of using web3, Metamask, Torus and WalletConnect.
+9. This Dapp supports three methods of using web3, Metamask, Torus and WalletConnect.
 10. Check-In is done using Wallet Connect, attendee scans qr code using WalletConnect enabled wallet and confirms an transaction.
 11. All the images of events are hosted on IPFS.
 ## Tech Stack
-1. React - Used for Buidling DApp.
+1. React - Used for Buidling Dapp.
 2. WalletConnect - For Checking in and web3 Provider.
 3. Web3Connect - Enabled support for multiple Web3 Provider.
 4. 3BOX - Used For Identity and profile management of Users.
 ## Some Remarks
 1. Please Refrain from using Exceptional Values, proper exceptional Handeling is yet to be added.
-2. For Testing you can use given private key - `6AD90A424022BE35F9A95AE44143DB08C894BA44ED0DE90B67199288E06924D5` This will allow you to test the DApp better, you wont have to add event or anything.
-3. This DApp is relys on kovan, thus please switch to kovan before Using DApp.
+2. For Testing you can use given private key - `6AD90A424022BE35F9A95AE44143DB08C894BA44ED0DE90B67199288E06924D5` This will allow you to test the Dapp better, you wont have to add event or anything.
+3. This Dapp is relys on kovan, thus please switch to kovan before Using Dapp.
 4. If something goes wrong please ping me on telegram, my user name is `abhimanyu121`.
-5. This was our first DApp and website, thus it might have some rough edges here and there.
-6. This DApp is hosted [here](goofy-beaver-e7c5b4.netlify.com)
+5. This was our first Dapp and website, thus it might have some rough edges here and there.
+6. This Dapp is hosted [here](goofy-beaver-e7c5b4.netlify.com)
 ## Some Screenshots
 |<img src="Screenshots/4.png" width="400">|<img src="Screenshots/9.png" width="400">
 |<img src="Screenshots/6.png" width="400">|<img src="Screenshots/8.png" width="400">

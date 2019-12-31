@@ -123,6 +123,7 @@ export default class CreateToken extends React.Component{
   
        /></h6></center>;
         }
+    
         else if(this.state.zero){
           listHost =  <Container className="main-container">
           <Row>

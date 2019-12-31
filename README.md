@@ -1,43 +1,54 @@
-# Tickets On Chain
-A decentralized Platform for all your Events.</br>
-Please Use Kovan.
-## About Project
-This project is Ehtereum based event hosting platform, it utilizes WalletConnect for check in, 3BOX for profile management, IPFS for files hosting and web3connect for managing Web3 Provider.</br>
-<img src="Screenshots/download (1).jpeg" width="200"></t>             <img src="Screenshots/3box.svg" width="200"></t>      <img src="Screenshots/ipfs.png" width="200"> </br></br>
-## Features of Project 
-1. Easy Payments for tickets using ETH or DAI.
-2. Decentralized management of Profile using 3BOX.
-3. Event Hosts can check profiles of ticket holders.
-4. If some ticket holders did not configure his profile, Event host can still see all the events hosted and tickets held by ticket holder.
-5. Event host can set maximum number of ticket to be sold.
-6. Event host can also disable an event to stop more ticket purchases.
-7. Users can view tickets held by them(tickets are NFTs).
-8. Users have choice whether to add information to their profile or not.
-9. This Dapp supports three methods of using web3, Metamask, Torus and WalletConnect.
-10. Check-In is done using Wallet Connect, attendee scans qr code using WalletConnect enabled wallet and confirms an transaction.
-11. All the images of events are hosted on IPFS.
-## Tech Stack
-1. React - Used for Buidling Dapp.
-2. WalletConnect - For Checking in and web3 Provider.
-3. Web3Connect - Enabled support for multiple Web3 Provider.
-4. 3BOX - Used For Identity and profile management of Users.
-## Some Remarks
-1. Please Refrain from using Exceptional Values, proper exceptional Handeling is yet to be added.
-2. For Testing you can use given private key - `6AD90A424022BE35F9A95AE44143DB08C894BA44ED0DE90B67199288E06924D5` This will allow you to test the Dapp better, you wont have to add event or anything.
-3. This Dapp is relys on kovan, thus please switch to kovan before Using Dapp.
-4. If something goes wrong please ping me on telegram, my user name is `abhimanyu121`.
-5. This was our first Dapp and website, thus it might have some rough edges here and there.
-6. This Dapp is hosted [here](goofy-beaver-e7c5b4.netlify.com)
-## Running Development server
-1. Install all the dependencies with `npm install`.
-2. Run Development server with `npm start`.
-## Some Screenshots
-|<img src="Screenshots/4.png" width="400">|<img src="Screenshots/9.png" width="400">
-|<img src="Screenshots/6.png" width="400">|<img src="Screenshots/8.png" width="400">
+# TicketsOnChain
 
-## Future Roadmaps
-1. Deployment to Mainnet.
-2. Adding Support for more ERC20 tokens.
-3. Dynamic Pricing to mitigate effect of fluctuating price of eth.
-4. Adding Support for multiple event admins.
-5. Optimizing Ui and Ux.
+This project is made for Consensys Ethereum Bootcamp October 2019
+>Author: Abhimanyu Shekhawat
+
+The Project provides a way to manage events using ethereum, enabling easy check-ins using walletConnect and easy profile management using 3BOX. 
+
+This projects uses ERC721 NFT as tickets and users can buy them using ETH (buy with dai option doesnt work yet), it supports 3 ways to access web3 metamask, walletconnect and torus, this project handles profile management using 3BOX, this project and check-ins at the venue are done using walletconnect(Any web3 compatible wallet can be used, although metamask mobile wallet is prefered) and uses IPFS to store Images.
+
+* Note - a few  Ui elements are written and improved by someone else, but web3 and everything is soleley handled by me, you can check the commit history for that.
+* You can access project [here](http://goofy-beaver-e7c5b4.netlify.com)
+
+## How to set it up?
+
+- Clone this directory using `git clone https://github.com/Abhimanyu121/TicketsOnChain -b consensys && cd TicketsOnChain`
+- Run `truffle compile` and `truffle migrate --network kovan`
+- Start the Frontend Server using `npm run dev`
+- The site can be seen on `localhost:3000`
+* Note - This project is hard coded to use Kovan network for better UX, please select kovan in you web3 provider
+## What all can it currently do?
+- A Person can create an event.
+- Users can buy  tickets using eth(DAI needs more debugging).
+- Ticket holders can check-in at the event using wallet connect compatible app and siging a tx.
+- Event host can check user profile and events attended by them.
+- Users can edit some parts of their profile.
+
+## What needs more work
+- Check-In proccess needs to be furthur imporved so that no one can call check-in function directly while not being at event
+## Evaluation checklist
+
+- [x] README.md
+- [X] Screen recording [!!]
+- [x] Truffle project - compile, migrate, test
+- [x] Smart Contract Commented
+- [x] Library use
+- [x] Local development interface
+    - [x] Displays the current ETH Account
+    - [x] Can sign transactions using MetaMask
+    - [x] App interface reflects contract state
+- [x] 5 tests in Js or Sol
+    - [x] Structured tests
+    - [x] All pass
+- [x] Circuit breaker/Emergency stop
+- [x] Project includes a file called design_pattern_desicions.md / at least 2 implemented
+- [x] avoiding_common_attacks.md and explains at least 3 attacks and how it mitigates
+- [x] deployed_addresses.txt that indicates contract address on testnet
+- [ ] upgradeable design pattern
+- [ ] One contract written in Vyper or LLL
+- [x] IPFS
+- [x] 3BOX
+- [x] Web3Connect (Wallet Connect, Metamask, Torus)
+- [ ] uPort
+- [ ] ENS
+- [ ] Oracle

@@ -4,7 +4,7 @@ Please Use Kovan.
 ## About Project
 This project is Ehtereum based event hosting platform, it utilizes WalletConnect for check in, 3BOX for profile management, IPFS for files hosting and web3connect for managing Web3 Provider.</br>
 <img src="Screenshots/download (1).jpeg" width="200"></t>             <img src="Screenshots/3box.svg" width="200"></t>      <img src="Screenshots/ipfs.png" width="200"> </br></br>
-## Features of Project 
+## Features Of Project 
 1. Easy Payments for tickets using ETH or DAI.
 2. Decentralized management of Profile using 3BOX.
 3. Event Hosts can check profiles of ticket holders.
@@ -28,7 +28,7 @@ This project is Ehtereum based event hosting platform, it utilizes WalletConnect
 4. If something goes wrong please ping me on telegram, my user name is `abhimanyu121`.
 5. This was our first Dapp and website, thus it might have some rough edges here and there.
 6. This Dapp is hosted [here](goofy-beaver-e7c5b4.netlify.com)
-## Running Development server
+## Running Development Server
 1. Install all the dependencies with `npm install`.
 2. Run Development server with `npm start`.
 ## Some Screenshots

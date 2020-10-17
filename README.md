@@ -1,6 +1,6 @@
 # Tickets On Chain
 A decentralized Platform for all your Events.</br>
-Please Use Kovan.
+Please Use Kovan testnet.
 ## About Project
 This project is Ehtereum based event hosting platform, it utilizes WalletConnect for check in, 3BOX for profile management, IPFS for files hosting and web3connect for managing Web3 Provider.</br>
 <img src="Screenshots/download (1).jpeg" width="200"></t>             <img src="Screenshots/3box.svg" width="200"></t>      <img src="Screenshots/ipfs.png" width="200"> </br></br>

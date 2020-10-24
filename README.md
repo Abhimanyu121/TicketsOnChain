@@ -9,10 +9,11 @@ A lot of things can be built around these NFT tickets, like Cohorts, Putting unu
 </br>
 <img src="https://findlogovector.com/wp-content/uploads/2019/11/matic-network-logo-vector.png" width="400"> </br>
 <img src="Screenshots/download (1).jpeg" width="200"></t>             <img src="Screenshots/3box.svg" width="200"></t>      <img src="Screenshots/ipfs.png" width="200"> </br></br>
-###### Note if tickets does not load right away, connect to metamask and make sure you are on mumbai testnet.
-###### Dapp is hosted at netlify and might take a few seconds to load up.
+##### Note : If tickets does not load right away, connect to metamask and make sure you are on mumbai testnet.
+##### Note : Dapp is hosted at netlify and might take a few seconds to load up.
 
 ### Features of Project 
+
 1. NFTs as tickets for events.
 2. Faster transaction rate and easy check ins with matic and wallet Connect.
 3. Low operation costs.
@@ -28,6 +29,7 @@ A lot of things can be built around these NFT tickets, like Cohorts, Putting unu
 10. Check-In is done using Wallet Connect, attendee scans qr code using WalletConnect enabled wallet and confirms an transaction.
 11. All the images of events are hosted on IPFS.
 ### Tech Stack
+1. Matic - Matic Mumbai testnet for fast and low cost transactions.
 1. React - Used for Buidling Dapp.
 2. WalletConnect - For Checking in and web3 Provider.
 3. Web3Connect - Enabled support for multiple Web3 Provider.

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "3box": "^1.15.0",
+    "@openzeppelin/contracts": "^3.2.0",
     "@toruslabs/torus-embed": "^0.2.9",
     "@walletconnect/browser": "^1.0.0-beta.39",
     "@walletconnect/qrcode-modal": "^1.0.0-beta.39",
@@ -13,6 +14,7 @@
     "ipfs-http-client": "^38.2.1",
     "jquery": "^3.4.1",
     "leaflet": "^1.5.1",
+    "maticjs": "^1.0.1",
     "node-cache": "^4.2.1",
     "react": "^16.9.0",
     "react-alert": "^6.0.0",

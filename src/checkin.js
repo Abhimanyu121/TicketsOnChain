@@ -99,7 +99,7 @@ export default class CheckIn extends React.Component{
          console.log(provider);
          const web3 = new Web3(provider);
           let acc = await web3.eth.getAccounts();
-          const deployedNetwork = TickesOnChain.networks[42];
+          const deployedNetwork = TickesOnChain.networks[80001];
           const instance = new web3.eth.Contract(
             TickesOnChain.abi,
             deployedNetwork && deployedNetwork.address,

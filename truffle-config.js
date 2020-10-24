@@ -23,6 +23,7 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const mnemonic = "company loud estate century olive gun tribe pulse bread play addict amount";
 
 module.exports = {
   contracts_build_directory: path.join(__dirname, "./src/contracts"),
@@ -70,15 +71,23 @@ module.exports = {
       skipDryRun: true,     // Skip dry run before migrations? (default: false for public nets )
       networkCheckTimeout:2000000000,
     },
+    // matic: {
+    //   provider: () => new HDWalletProvider(mnemonic, `https://testnetv3.matic.network`),
+    //   network_id: 15001,
+    //   gasPrice: '0x0',
+    //   confirmations: 2,
+    //   timeoutBlocks: 200,
+    //   skipDryRun: true,
+    //   networkCheckTimeout:2000000000,
+    // },
     matic: {
-      provider: function() {
-        return new HDWalletProvider("gesture rather obey video awake genuine patient base soon parrot upset lounge", 'https://testnet2.matic.network', 0,1)
-      },
-      network_id: 8995,
-      gas: 8000000,
-      gasPrice: 0,
+      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.matic.today`),
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks: 100,
+      skipDryRun: true,
+      networkCheckTimeout:2000000000,
     },
-
     // Useful for private networks
     // private: {
       // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
@@ -95,15 +104,13 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
+      version: "^0.6.0",       // Use "0.5.1" you've installed locally with docker (default: false)
+      settings: {          // See the solidity docs for advice about optimization and evmVersion
+       optimizer: {
+         enabled: true,
+         runs: 1000000
+       }
+      }
     }
   }
 }

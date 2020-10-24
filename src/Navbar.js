@@ -61,7 +61,6 @@ export default class NavExample extends React.Component {
   render() {
     //this.sendprop();
     let accountButton =       <Web3Connect.Button
-    network="kovan" // optional
     providerOptions={{
       walletconnect: {
         package: WalletConnectProvider, // required
@@ -69,24 +68,12 @@ export default class NavExample extends React.Component {
           infuraId: "311ef590f7e5472a90edfa1316248cff" // required
         }
       },
-      torus: {
-        package: Torus, // required
-        options: {
-          enableLogging: false, // optional
-          buttonPosition: "bottom-left", // optional
-          buildEnv: "production", // optional
-          showTorusButton: true, // optional
-          enabledVerifiers: { // optional
-            google: false // optional
-          }
-        }
-      },
     }}
     onConnect={async (provider) => {
       const web3 = new Web3(provider);
       let acc = await web3.eth.getAccounts();
       this.state.superWeb3 = web3;
-      const deployedNetwork = TickesOnChain.networks[42];
+      const deployedNetwork = TickesOnChain.networks[80001];
       const instance = new web3.eth.Contract(
         TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,

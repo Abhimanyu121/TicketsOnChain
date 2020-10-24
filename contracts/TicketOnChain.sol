@@ -1,10 +1,10 @@
-pragma solidity >=0.4.22 <0.6.0;
+pragma solidity ^0.6.0;
 
 
-import "@openzeppelin/contracts/token/ERC721/ERC721MetadataMintable.sol";
-contract TicketsOnChain is ERC721MetadataMintable {
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+contract TicketsOnChain is ERC721 {
     address address_dai = 0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa;
-     constructor() ERC721Metadata("eventTicket","CEFT") public{
+     constructor() ERC721("eventTicket","CEFT") public{
 
     } 
   struct Event{
@@ -170,7 +170,7 @@ contract TicketsOnChain is ERC721MetadataMintable {
   function daicheck2() public {
     //  bal = ERC20(address_dai).balanceOf(msg.sender);
     // ERC20(address_dai).approve(address(this),1000);
-    address ac= msg.sender;
+   
     ERC20 token =  ERC20(address_dai);
     token.transferFrom(msg.sender,address(this),1000);
 

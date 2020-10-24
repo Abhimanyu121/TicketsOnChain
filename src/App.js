@@ -24,7 +24,7 @@ class App extends React.Component {
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = TickesOnChain.networks[networkId];
+      const deployedNetwork = TickesOnChain.networks[80001];
       const instance = new web3.eth.Contract(
         TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,

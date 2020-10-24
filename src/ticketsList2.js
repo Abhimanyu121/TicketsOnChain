@@ -36,14 +36,15 @@ export default class ticketsList extends React.Component{
     console.log(provider);
     await provider.close();
     console.log(provider);
-      provider =  new WalletConnectProvider({
-      infuraId: "311ef590f7e5472a90edfa1316248cff"
-    });
+      provider =  new WalletConnectProvider(  {
+        host: `https://rpc-mumbai.matic.today`,
+      }
+    );
    
     await provider.enable()
     const web3 = new Web3(provider);
       let acc = await web3.eth.getAccounts();
-      const deployedNetwork = TickesOnChain.networks[42];
+      const deployedNetwork = TickesOnChain.networks[80001];
       const instance = new web3.eth.Contract(
         TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,

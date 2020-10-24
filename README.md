@@ -7,7 +7,7 @@ This project is Matic based event hosting platform, it utilizes WalletConnect fo
 
 A lot of things can be built around these NFT tickets, like Cohorts, Putting unused Tickets(NFTs) as collateral,Proof of presence etc. Possiblities are limitless and Matic adds cherry on top of it. </br>
 <b> You can find a video demo of project [here.](https://drive.google.com/file/d/1xVxyJtph9t0pF01EUmX3TWD4TItiT1cV/view?usp=sharing)</br>
-You can find deployed app at [here.] (https://condescending-murdock-bf06eb.netlify.app/)
+You can find deployed app at [here.](https://condescending-murdock-bf06eb.netlify.app/)
 </b>
 </br>
 <img src="https://findlogovector.com/wp-content/uploads/2019/11/matic-network-logo-vector.png" width="400"> </br>

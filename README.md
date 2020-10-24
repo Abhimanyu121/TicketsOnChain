@@ -20,6 +20,7 @@ You can find deployed app at [here.](https://condescending-murdock-bf06eb.netlif
 1. NFTs as tickets for events.
 2. Faster transaction rate and easy check ins with matic and wallet Connect.
 3. Low operation costs.
+4. Simply scan Wallet Connect QR code to Checkin, fast matic Transactions will make whole experience seamless.
 1. Easy Payments for tickets using ETH or DAI.
 2. Decentralized management of Profile using 3BOX.
 3. Event Hosts can check profiles of ticket holders.

@@ -1,10 +1,18 @@
-# Tickets On Chain
+# NFT Tickets On Chain
 A decentralized Platform for all your Events.</br>
-Please Use Kovan.
+Please Use Matic Mumbai Testnet.
 ## About Project
-This project is Ehtereum based event hosting platform, it utilizes WalletConnect for check in, 3BOX for profile management, IPFS for files hosting and web3connect for managing Web3 Provider.</br>
+This project is Matic based event hosting platform, it utilizes WalletConnect for check in, 3BOX for profile management, IPFS for files hosting and web3connect for managing Web3 Provider.</br>
+
+A lot of things can be built around these NFT tickets, like Cohorts, Putting unused Tickets(NFTs) as collateral,Proof of presence etc. Possiblities are limitless and Matic adds cherry on top of it. </br>
+<b> You can find a video demo of project [here.](https://drive.google.com/file/d/1xVxyJtph9t0pF01EUmX3TWD4TItiT1cV/view?usp=sharing)
+</br>
+<img src="https://findlogovector.com/wp-content/uploads/2019/11/matic-network-logo-vector.png" width="400"> </br>
 <img src="Screenshots/download (1).jpeg" width="200"></t>             <img src="Screenshots/3box.svg" width="200"></t>      <img src="Screenshots/ipfs.png" width="200"> </br></br>
 ## Features of Project 
+1. NFTs as tickets for events.
+2. Faster transaction rate and easy check ins with matic and wallet Connect.
+3. Low operation costs.
 1. Easy Payments for tickets using ETH or DAI.
 2. Decentralized management of Profile using 3BOX.
 3. Event Hosts can check profiles of ticket holders.

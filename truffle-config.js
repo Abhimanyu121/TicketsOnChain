@@ -88,6 +88,24 @@ module.exports = {
       skipDryRun: true,
       networkCheckTimeout:2000000000,
     },
+    xdai: {
+      provider: function() {
+            return new HDWalletProvider(
+           mnemonic,
+           "https://dai.poa.network")
+      },
+      network_id: 100,
+      gas: 500000,
+      gasPrice: 1000000000
+  },
+  bnb: {
+    provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
+    network_id: 97,
+    confirmations: 10,
+    timeoutBlocks: 200,
+    skipDryRun: true
+  },
+
     // Useful for private networks
     // private: {
       // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
@@ -95,6 +113,7 @@ module.exports = {
       // production: true    // Treats this network as if it was a public net. (default: false)
     // }
   },
+ 
 
   // Set default mocha options here, use special reporters etc.
   mocha: {

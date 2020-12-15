@@ -73,7 +73,7 @@ export default class NavExample extends React.Component {
       const web3 = new Web3(provider);
       let acc = await web3.eth.getAccounts();
       this.state.superWeb3 = web3;
-      const deployedNetwork = TickesOnChain.networks[80001];
+      const deployedNetwork = TickesOnChain.networks[97];
       const instance = new web3.eth.Contract(
         TickesOnChain.abi,
         deployedNetwork && deployedNetwork.address,

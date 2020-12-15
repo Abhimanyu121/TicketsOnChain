@@ -97,7 +97,7 @@ export default class CreateToken extends React.Component{
       if(this.state.superWeb3== null && this.state.superContract ==null){
         const _web3 = new  Web3(new Web3.providers.WebsocketProvider("wss://ws-mumbai.matic.today"));
         const networkId = await _web3.eth.net.getId();
-        const deployedNetwork = TickesOnChain.networks[80001];
+        const deployedNetwork = TickesOnChain.networks[97];
         console.log(deployedNetwork.address);
         const instance = new _web3.eth.Contract(
           TickesOnChain.abi,

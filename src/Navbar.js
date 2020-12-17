@@ -1,6 +1,6 @@
 import React from "react";
 import Web3Connect from "web3connect";
-import Torus from "@toruslabs/torus-embed";
+import {openIDXSpace} from "./idx";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 import TickesOnChain from "./contracts/TicketsOnChain.json";
@@ -83,6 +83,7 @@ export default class NavExample extends React.Component {
       },
     }}
     onConnect={async (provider) => {
+      console.log(provider)
       const web3 = new Web3(provider);
       let acc = await web3.eth.getAccounts();
       this.state.superWeb3 = web3;
@@ -96,6 +97,14 @@ export default class NavExample extends React.Component {
       this.props.setSuperContract(instance);
       this.props.setSuperAccount(acc);
       console.log(acc);
+      ////
+      let idx = await openIDXSpace(provider, acc)
+        await idx.set("basicProfile", {
+        Name: "Abhi",
+        email: "abhi@gmail.com",
+        phoneNumber: "7894561230",
+      });
+      ////
       this.setState({superContract: instance, superWeb3: web3, account:acc})
     }}
     onClose={() => {

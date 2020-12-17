@@ -1,7 +1,7 @@
 import React from "react";
 import { Container,Row, FormInput, Button,Col, Card,CardHeader,CardTitle,CardBody,FormTextarea } from "shards-react";
 import { Marker, Popup } from 'react-leaflet';
-
+import {openIDXSpace} from "./idx";
 
 const Box = require('3box')
 export default class CreateReview extends React.Component{
@@ -22,7 +22,7 @@ export default class CreateReview extends React.Component{
     }
     this.handleInput = this.handleInput.bind(this);
   }
-    
+ 
 
   setOpenBoxData= async()=>{
     alert("Please press okay and wait for a while");
@@ -33,7 +33,23 @@ export default class CreateReview extends React.Component{
     await  space.public.setMultiple(["name","phone","email"],[this.state.subject,this.state.phone,this.state.email]);
     alert("Updated");
   }
-
+  idx = async() =>{
+    let _provider = this.state.superWeb3.currentProvider;
+    console.log(_provider)
+    let accounts = await this.state.superWeb3.eth.getAccounts();
+    // let idx = await openIDXSpace(provider, accounts)
+    //     await idx.set("basicProfile", {
+    //     Name: this.state.subject,
+    //     email: this.state.email,
+    //     phoneNumber: this.state.phone,
+    //   });
+    let idx = await openIDXSpace(_provider, accounts)
+        await idx.set("basicProfile", {
+        Name: "Abhi",
+        email: "abhi@gmail.com",
+        phoneNumber: "7894561230",
+      });
+  }
   handleInput(event) {
     const target = event.target;
     if (target.name == "subject"){
@@ -68,7 +84,7 @@ export default class CreateReview extends React.Component{
                     <FormInput type="number" name="phone" value={this.state.phone} onChange={this.handleInput} />
                     <br />
                     
-                    <center><Button outline pill onMouseUp={()=>{this.setOpenBoxData()}}>Save Changes</Button></center>
+                    <center><Button outline pill onMouseUp={()=>{this.idx()}}>Save Changes</Button></center>
                   </CardBody>
                 </Card>
               </div>

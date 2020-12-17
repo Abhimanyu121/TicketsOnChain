@@ -4,7 +4,7 @@ Please Use Kovan.
 ## About Project
 This project is Ehtereum based event hosting platform, it utilizes WalletConnect for check in, IDX for profile management, IPFS for files hosting and web3connect for managing Web3 Provider.
 </br>
-You can watch a video [here](https://youtu.be/Ol6uRrO7Au8)
+You can watch a video [here](https://youtu.be/Ol6uRrO7Au8) </br>
 <img src="Screenshots/download (1).jpeg" width="200"></t>             </t>      <img src="Screenshots/ipfs.png" width="200"> </br></br>
 ## Features of Project 
 1. Easy Payments for tickets using ETH or DAI.

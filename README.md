@@ -29,7 +29,7 @@ You can watch a video [here](https://youtu.be/Ol6uRrO7Au8) </br>
 3. This Dapp is relys on kovan, thus please switch to kovan before Using Dapp.
 4. If something goes wrong please ping me on telegram, my user name is `abhimanyu121`.
 5. This was our first Dapp and website, thus it might have some rough edges here and there.
-6. This Dapp is hosted [here](goofy-beaver-e7c5b4.netlify.com)
+6. This Dapp is hosted [here](https://eloquent-engelbart-a4296d.netlify.app)
 ## Running Development server
 1. Install all the dependencies with `npm install`.
 2. Run Development server with `npm start`.

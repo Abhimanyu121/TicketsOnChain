@@ -69,18 +69,7 @@ export default class NavExample extends React.Component {
           infuraId: "311ef590f7e5472a90edfa1316248cff" // required
         }
       },
-      torus: {
-        package: Torus, // required
-        options: {
-          enableLogging: false, // optional
-          buttonPosition: "bottom-left", // optional
-          buildEnv: "production", // optional
-          showTorusButton: true, // optional
-          enabledVerifiers: { // optional
-            google: false // optional
-          }
-        }
-      },
+     
     }}
     onConnect={async (provider) => {
       console.log(provider)

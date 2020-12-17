@@ -45,9 +45,9 @@ export default class CreateReview extends React.Component{
     //   });
     let idx = await openIDXSpace(_provider, accounts)
         await idx.set("basicProfile", {
-        Name: "Abhi",
-        email: "abhi@gmail.com",
-        phoneNumber: "7894561230",
+        Name: this.state.subject,
+        email: this.state.email,
+        phoneNumber: this.state.phone,
       });
   }
   handleInput(event) {

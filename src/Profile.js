@@ -1,6 +1,7 @@
 import React from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import {getProfile} from "./idx";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {
   Row,
@@ -50,7 +51,7 @@ export default class Profile extends React.Component {
   fetchProfile=async ()=>{
     const acc = await this.state.superWeb3.eth.getAccounts();
     console.log(this.state.superWeb3)
-    let  spaceList = await Box.getSpace(acc[0],"ToC");
+    let  spaceList = await getProfile(this.state.superWeb3.currentProvider, acc);
     //const box = await Box.openBox(acc[0], this.state.superWeb3.currentProvider)
     
     
@@ -82,7 +83,7 @@ export default class Profile extends React.Component {
       <Row>
         <Col sm="12" md="3">
             <CardImg width="200" src="https://c.gitcoin.co/avatars/0357f94b529985a8a898ab338add0edf/djrosenbaum.png" /> <br /> <br/>
-    <h3><b>{this.state.boxProfile.name}</b></h3>
+    <h3><b>{this.state.boxProfile.Name}</b></h3>
             <h5><b><Link to = {{
                   pathname: '/edit-profile',
                   aboutProps:{
@@ -96,7 +97,7 @@ export default class Profile extends React.Component {
             <Card>
               <CardHeader>Details</CardHeader>
               <CardBody>
-              <p>Phone Number :- {this.state.boxProfile.phone}</p>
+              <p>Phone Number :- {this.state.boxProfile.phoneNumber}</p>
               <p>Email :- {this.state.boxProfile.email}</p>
     <p>Total Tickets :- {this.state.contractProfile[1].length}</p>
                 <p>Events Hosted :-  {this.state.contractProfile[0].length}</p>

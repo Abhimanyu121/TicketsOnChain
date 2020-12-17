@@ -1,6 +1,6 @@
 import React from "react";
 import Web3Connect from "web3connect";
-import {openIDXSpace} from "./idx";
+import {openIDXSpace, getProfile} from "./idx";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3";
 import TickesOnChain from "./contracts/TicketsOnChain.json";
@@ -104,6 +104,7 @@ export default class NavExample extends React.Component {
         email: "abhi@gmail.com",
         phoneNumber: "7894561230",
       });
+      getProfile(provider, acc)
       ////
       this.setState({superContract: instance, superWeb3: web3, account:acc})
     }}

@@ -15,7 +15,7 @@ You can find deployed app at [here.](https://condescending-murdock-bf06eb.netlif
 ##### Note : If tickets does not load right away, connect to metamask and make sure you are on mumbai testnet.
 ##### Note : Dapp is hosted at netlify and might take a few seconds to load up.
 
-### Features of Project 
+#### Features of Project 
 
 1. NFTs as tickets for events.
 2. Faster transaction rate and easy check ins with matic and wallet Connect.

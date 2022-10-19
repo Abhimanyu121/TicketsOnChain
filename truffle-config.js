@@ -61,9 +61,9 @@ module.exports = {
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    kovan: {
-      provider: () => new HDWalletProvider("company loud estate century olive gun tribe pulse bread play addict amount", `https://kovan.infura.io/v3/311ef590f7e5472a90edfa1316248cff`),
-      network_id: 42,       // Ropsten's id
+    sepolia: {
+      provider: () => new HDWalletProvider("company loud estate century olive gun tribe pulse bread play addict amount", `https://sepolia.infura.io/v3/311ef590f7e5472a90edfa1316248cff`),
+      network_id: 11155111,       // Ropsten's id
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
